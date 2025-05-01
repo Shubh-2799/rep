@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://387uqoc1s1i5"]
+
+[ext_resource type="Script" path="res://static_body_2d.gd" id="1_t06lx"]
+[ext_resource type="Texture2D" uid="uid://dl5e86vak13bh" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky_lightened.png" id="2_7p3cy"]
+[ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="3_tuuh6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5amvq"]
+size = Vector2(40.7961, 134.166)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_t06lx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-17.078, 1709.85)
+scale = Vector2(4.53632, 16.3898)
+texture = ExtResource("2_7p3cy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.00001, 0.000276685)
+scale = Vector2(1.46875, 0.602481)
+texture = ExtResource("3_tuuh6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, 0.451485)
+scale = Vector2(13.8984, 1)
+shape = SubResource("RectangleShape2D_5amvq")

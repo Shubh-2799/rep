@@ -1,0 +1,164 @@
+[gd_scene load_steps=15 format=3 uid="uid://dixo2sk7lna21"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
+[ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
+[ext_resource type="PackedScene" uid="uid://cc4ooqmvgt7i4" path="res://object.tscn" id="2_c3sqa"]
+[ext_resource type="Texture2D" uid="uid://73a2j40ei0cs" path="res://icon.svg" id="2_vawx2"]
+[ext_resource type="PackedScene" uid="uid://d23m45mooqerl" path="res://obstacle.tscn" id="3_8nrnq"]
+[ext_resource type="PackedScene" uid="uid://c04vtr65erpfu" path="res://player.tscn" id="4_1ihy7"]
+[ext_resource type="Script" path="res://label_4.gd" id="5_hyhja"]
+[ext_resource type="Texture2D" uid="uid://dl5e86vak13bh" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky_lightened.png" id="5_xpauv"]
+[ext_resource type="Texture2D" uid="uid://poyba0vq26tl" path="res://Glacial-mountains-parallax-background_vnitti/Layers/glacial_mountains.png" id="5_xpmol"]
+[ext_resource type="Texture2D" uid="uid://bifwhid3qsm4t" path="res://Glacial-mountains-parallax-background_vnitti/Layers/clouds_bg.png" id="6_1forn"]
+[ext_resource type="Texture2D" uid="uid://ccft28iuhcakx" path="res://Glacial-mountains-parallax-background_vnitti/Layers/clouds_mg_1_lightened.png" id="7_dmad8"]
+[ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="7_eqgfy"]
+[ext_resource type="Script" path="res://sprite_2d.gd" id="8_adgsx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnyt"]
+size = Vector2(127.928, 128)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_eo370")
+street_lamp_scene = ExtResource("2_2vqx2")
+obstacle_scene = ExtResource("3_8nrnq")
+static_body_scene = ExtResource("2_c3sqa")
+spawn_distance = 1000.0
+despawn_distance = 2000.0
+min_gap = 500.0
+object_count = 30
+
+[node name="background" type="Node2D" parent="."]
+z_index = -7
+
+[node name="Parallax2D4" type="Parallax2D" parent="background"]
+scroll_offset = Vector2(432, -420)
+repeat_size = Vector2(785, 500)
+repeat_times = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D4"]
+position = Vector2(28, -218)
+scale = Vector2(2.04688, 3.18519)
+texture = ExtResource("5_xpauv")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="background"]
+visible = false
+scroll_scale = Vector2(0.1, 1)
+scroll_offset = Vector2(414, -1)
+repeat_size = Vector2(785, 0)
+repeat_times = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D"]
+position = Vector2(28, -218)
+scale = Vector2(2.04688, 3.18519)
+texture = ExtResource("5_xpmol")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="background"]
+visible = false
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(345, 0)
+repeat_times = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D2"]
+position = Vector2(122, 220)
+scale = Vector2(0.898437, 1.13426)
+texture = ExtResource("6_1forn")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="background"]
+visible = false
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(384, 0)
+repeat_times = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D3"]
+position = Vector2(-33, 9)
+scale = Vector2(1, 2.10648)
+texture = ExtResource("7_dmad8")
+centered = false
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_1ihy7")]
+position = Vector2(137, 398)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(-3.05176e-05, 3.05176e-05)
+limit_left = 0
+limit_bottom = 1960
+limit_smoothed = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-25.9999, 729)
+scale = Vector2(0.630406, -3.98352)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-24.5028, 1)
+scale = Vector2(13.8984, 1)
+shape = SubResource("RectangleShape2D_mvnyt")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-23.0028, 1)
+scale = Vector2(13.8984, 1)
+texture = ExtResource("2_vawx2")
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+offset_left = 1770.0
+offset_top = 402.0
+offset_right = 1865.0
+offset_bottom = 457.0
+theme_override_font_sizes/font_size = 40
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_hyhja")
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+offset_left = 1770.0
+offset_top = 402.0
+offset_right = 1865.0
+offset_bottom = 457.0
+theme_override_font_sizes/font_size = 20
+text = "Skill on cooldown!!
+"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = 1976.0
+offset_top = 180.0
+offset_right = 2235.0
+offset_bottom = 263.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.964706, 0, 1, 1)
+z_index = 2
+position = Vector2(3683, 3345.5)
+scale = Vector2(32.3594, 13.4583)
+texture = ExtResource("7_eqgfy")
+script = ExtResource("8_adgsx")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 297.0
+offset_top = 318.0
+offset_right = 566.0
+offset_bottom = 360.0
+theme_override_font_sizes/font_size = 30
+text = "Skill on cooldown!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

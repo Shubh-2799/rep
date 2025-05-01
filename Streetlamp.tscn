@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6c6fs2t31vja"]
+
+[ext_resource type="Script" path="res://streetlamp.gd" id="1_rc0dg"]
+[ext_resource type="Texture2D" uid="uid://dl5e86vak13bh" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky_lightened.png" id="2_20njs"]
+[ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="3_3hm3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnyt"]
+size = Vector2(127.738, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg7ay"]
+size = Vector2(1212.14, 156.627)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bnbim"]
+radius = 56.052
+height = 582.85
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqrgb"]
+size = Vector2(1210.71, 133.333)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+z_index = -2
+scale = Vector2(-0.7, 0.03)
+collision_layer = 3
+script = ExtResource("1_rc0dg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.803922, 0.733333, 0, 1)
+position = Vector2(6.10352e-05, 1.20497)
+scale = Vector2(4.62527, 0.591327)
+texture = ExtResource("3_3hm3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.535947, 0.134166)
+scale = Vector2(13.8984, 1)
+shape = SubResource("RectangleShape2D_mvnyt")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(283.928, 33.3333)
+shape = SubResource("RectangleShape2D_mg7ay")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0.286275, 1)
+position = Vector2(-610.169, -3.81469e-06)
+scale = Vector2(1.49777, 0.597704)
+texture = ExtResource("2_20njs")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-607.143, -33.3333)
+rotation = 1.57527
+shape = SubResource("CapsuleShape2D_bnbim")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(282.499, 0.000119209)
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_tqrgb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

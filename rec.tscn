@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://c33lsbe4blm6k"]
+
+[ext_resource type="Script" path="res://rec.gd" id="1_nhyof"]
+[ext_resource type="PackedScene" uid="uid://cc4ooqmvgt7i4" path="res://object.tscn" id="1_sym4l"]
+[ext_resource type="PackedScene" uid="uid://c04vtr65erpfu" path="res://player.tscn" id="2_3p03d"]
+[ext_resource type="Texture2D" uid="uid://73a2j40ei0cs" path="res://icon.svg" id="3_fiurh"]
+[ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="4_yi3n6"]
+[ext_resource type="Script" path="res://label_4.gd" id="5_sp80v"]
+[ext_resource type="PackedScene" uid="uid://d23m45mooqerl" path="res://obstacle.tscn" id="7_0fk2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qalt"]
+size = Vector2(127.928, 128)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nhyof")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_3p03d")]
+position = Vector2(57.9999, -116)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0.000137329, -7.62939e-06)
+zoom = Vector2(0.8, 0.8)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-575, 143)
+scale = Vector2(0.890695, -2.52368)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-24.5028, 1)
+scale = Vector2(13.8984, 1)
+shape = SubResource("RectangleShape2D_5qalt")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-23.0028, 1)
+scale = Vector2(13.8984, 1)
+texture = ExtResource("3_fiurh")
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(7370, -2469)
+
+[node name="StaticBody2D10" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(5518, -1660)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(3455, -1056)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(5286, -939)
+
+[node name="StaticBody2D12" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(6661, -1167)
+
+[node name="StaticBody2D13" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(5810, -1301)
+
+[node name="StaticBody2D11" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(4462, -1260)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(2632, -814)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(3071, -1328)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("1_sym4l")]
+position = Vector2(1865, -966)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("4_yi3n6")]
+position = Vector2(656, -312)
+scale = Vector2(-0.553, 0.069)
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+offset_left = 1770.0
+offset_top = 402.0
+offset_right = 1865.0
+offset_bottom = 457.0
+theme_override_font_sizes/font_size = 40
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_sp80v")
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+offset_left = 1770.0
+offset_top = 402.0
+offset_right = 1865.0
+offset_bottom = 457.0
+theme_override_font_sizes/font_size = 20
+text = "
+"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1976.0
+offset_top = 180.0
+offset_right = 2235.0
+offset_bottom = 263.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody2D" parent="." instance=ExtResource("7_0fk2w")]
+position = Vector2(1509, -690)
