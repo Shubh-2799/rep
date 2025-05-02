@@ -72,6 +72,10 @@ position = Vector2(1865, -966)
 position = Vector2(656, -312)
 scale = Vector2(-0.553, 0.069)
 
+[node name="StaticBody2D14" parent="." instance=ExtResource("4_yi3n6")]
+position = Vector2(1341, -355)
+scale = Vector2(-0.553, 0.069)
+
 [node name="Label4" type="Label" parent="."]
 visible = false
 offset_left = 1770.0
@@ -106,4 +110,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StaticBody2D" parent="." instance=ExtResource("7_0fk2w")]
-position = Vector2(1509, -690)
+position = Vector2(739, -490)

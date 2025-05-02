@@ -29,6 +29,12 @@ func _process(delta: float) -> void:
 		justjumped = false
 	elif is_on_floor() and not direction:
 		$AnimatedSprite2D.play("default")
+	if S.dash:
+		velocity.x = 1200.0
+		velocity.y = 0.0
+		$AnimatedSprite2D.play("dash")
+		$CPUParticles2D2.emitting = true
+		$CPUParticles2D3.emitting = true
 	'''if velocity.x > 0:
 		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0:
@@ -63,4 +69,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		velocity.x = direction * SPEED
 		S.jump = true
+	if not is_on_floor() and Input.is_action_just_pressed("dash"):
+		S.dash = true
+		$Timer.start()
 	move_and_slide()
+
+
+func _on_timer_timeout() -> void:
+	S.dash = false
