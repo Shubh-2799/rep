@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dixo2sk7lna21"]
+[gd_scene load_steps=16 format=3 uid="uid://dixo2sk7lna21"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ccft28iuhcakx" path="res://Glacial-mountains-parallax-background_vnitti/Layers/clouds_mg_1_lightened.png" id="7_dmad8"]
 [ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="7_eqgfy"]
 [ext_resource type="Script" path="res://sprite_2d.gd" id="8_adgsx"]
+[ext_resource type="PackedScene" uid="uid://0wlm1n4b3hr3" path="res://touchcontrols.tscn" id="14_q7oi1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnyt"]
 size = Vector2(127.928, 128)
@@ -160,5 +161,13 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" parent="Control" instance=ExtResource("14_q7oi1")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
