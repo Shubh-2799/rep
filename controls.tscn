@@ -20,10 +20,10 @@ theme_override_font_sizes/font_size = 70
 text = "PLAY"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 372.0
-offset_top = 180.0
-offset_right = 1525.0
-offset_bottom = 834.0
+offset_left = 368.0
+offset_top = 213.0
+offset_right = 1521.0
+offset_bottom = 867.0
 theme_override_font_sizes/font_size = 30
 text = "Controls:-
 while on land
@@ -32,8 +32,9 @@ while on land
 
 while on air
     leftclick/P :- grapple or swing
-    M :- spin and score
-    F :- ability "
+    M/E/right click :- spin and score
+    F/Shift/Ctrl :- dash
+while dashing, your player is [title card]"
 horizontal_alignment = 1
 vertical_alignment = 1
 

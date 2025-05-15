@@ -20,3 +20,4 @@ var jump:bool = false
 var jumppad: bool = false
 var dash:bool = false
 var oncooldown:bool = false
+var test:bool = true

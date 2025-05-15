@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0wlm1n4b3hr3"]
+[gd_scene load_steps=2 format=3 uid="uid://0wlm1n4b3hr3"]
 
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://virtual_joystick_scene.tscn" id="1_05bno"]
 [ext_resource type="Texture2D" uid="uid://i0ovfara0gfe" path="res://button.png" id="1_pgp6n"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-
-[node name="Virtual Joystick" parent="." instance=ExtResource("1_05bno")]
 
 [node name="Left" type="TouchScreenButton" parent="."]
 visible = false
@@ -32,7 +29,8 @@ scale = Vector2(0.8, 0.806)
 texture_normal = ExtResource("1_pgp6n")
 action = "dash"
 
-[node name="Jump" type="TouchScreenButton" parent="Control"]
+[node name="Jump" type="TouchScreenButton" parent="."]
+position = Vector2(936, 764)
 scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("1_pgp6n")
 action = "spacebar"

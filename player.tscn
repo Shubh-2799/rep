@@ -1,16 +1,22 @@
-[gd_scene load_steps=34 format=3 uid="uid://c04vtr65erpfu"]
+[gd_scene load_steps=39 format=3 uid="uid://c04vtr65erpfu"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_o5ldr"]
+[ext_resource type="Texture2D" uid="uid://kd6bkiwxiixv" path="res://dash-0002.png" id="2_vj5d7"]
 [ext_resource type="Texture2D" uid="uid://b4ovc783j7ggq" path="res://Sprite-idle-Sheet (1).png" id="2_wswbc"]
 [ext_resource type="Script" path="res://grapple.gd" id="3_mhyeh"]
+[ext_resource type="Texture2D" uid="uid://dluhf32xosvfe" path="res://jump_and_fall_ (1).png" id="3_nf1p1"]
 [ext_resource type="Script" path="res://label.gd" id="4_g3nkr"]
 [ext_resource type="Texture2D" uid="uid://n88f7tkm3jow" path="res://run-Sheet.png" id="4_gch6q"]
 [ext_resource type="Script" path="res://label_3.gd" id="5_8j2b2"]
 [ext_resource type="Texture2D" uid="uid://cb43qadyt105d" path="res://swing_sprites.png" id="5_76hex"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q8m44"]
-atlas = ExtResource("4_gch6q")
-region = Rect2(144, 0, 36, 54)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cytsk"]
+atlas = ExtResource("2_vj5d7")
+region = Rect2(4, 0, 45, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iegw"]
+atlas = ExtResource("3_nf1p1")
+region = Rect2(81, 0, 33, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_syy2b"]
 atlas = ExtResource("2_wswbc")
@@ -39,6 +45,14 @@ region = Rect2(0, 48, 64, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir2rf"]
 atlas = ExtResource("5_76hex")
 region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivdeb"]
+atlas = ExtResource("5_76hex")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr8ng"]
+atlas = ExtResource("5_76hex")
+region = Rect2(140, 48, 35, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ie04"]
 atlas = ExtResource("4_gch6q")
@@ -72,10 +86,6 @@ region = Rect2(384, 0, 64, 52)
 atlas = ExtResource("4_gch6q")
 region = Rect2(448, 0, 64, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ivdeb"]
-atlas = ExtResource("5_76hex")
-region = Rect2(192, 0, 64, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xq73"]
 atlas = ExtResource("5_76hex")
 region = Rect2(192, 48, 64, 48)
@@ -92,11 +102,14 @@ region = Rect2(256, 48, 64, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q8m44")
+"texture": SubResource("AtlasTexture_cytsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iegw")
 }],
 "loop": true,
 "name": &"dash",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -128,6 +141,22 @@ animations = [{
 "loop": false,
 "name": &"fall",
 "speed": 11.47
+}, {
+"frames": [{
+"duration": 1.98,
+"texture": SubResource("AtlasTexture_ivdeb")
+}],
+"loop": true,
+"name": &"grapple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr8ng")
+}],
+"loop": true,
+"name": &"jumppad",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -191,6 +220,10 @@ point_count = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou6p"]
 size = Vector2(43.1034, 111.765)
 
+[sub_resource type="Curve" id="Curve_jgqo2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(1725, 487)
@@ -203,7 +236,7 @@ script = ExtResource("1_o5ldr")
 position = Vector2(4.00543e-05, -1.09673e-05)
 scale = Vector2(2.82813, 2.44118)
 sprite_frames = SubResource("SpriteFrames_vp328")
-animation = &"dash"
+animation = &"grapple"
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D"]
 position = Vector2(6.40121, -9.33733)
@@ -235,7 +268,7 @@ width_curve = SubResource("Curve_3tdyn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
-modulate = Color(0.0901961, 0.0588235, 0.262745, 1)
+modulate = Color(0.07, 0.07, 0.07, 1)
 z_index = -5
 offset_left = -7811.0
 offset_top = -5860.0
@@ -272,12 +305,11 @@ vertical_alignment = 1
 script = ExtResource("5_8j2b2")
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+visible = false
 position = Vector2(-24.1379, 24.2647)
 scale = Vector2(0.862069, 0.735294)
-emitting = false
 amount = 200
 lifetime = 1.6
-one_shot = true
 speed_scale = 10.0
 randomness = 0.67
 direction = Vector2(-1, 0)
@@ -285,9 +317,11 @@ spread = 22.5
 gravity = Vector2(0, 0)
 initial_velocity_min = 76.92
 initial_velocity_max = 211.54
+scale_amount_min = 0.0
 
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
-position = Vector2(-24.138, -9.55882)
+visible = false
+position = Vector2(-24.1379, 2.20589)
 scale = Vector2(0.862069, 0.735294)
 emitting = false
 amount = 200
@@ -296,12 +330,18 @@ one_shot = true
 speed_scale = 10.0
 randomness = 0.67
 direction = Vector2(-1, 0)
-spread = 22.5
+spread = 75.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 76.92
 initial_velocity_max = 211.54
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_jgqo2")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.25
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

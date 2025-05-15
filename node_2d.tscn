@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dixo2sk7lna21"]
+[gd_scene load_steps=12 format=3 uid="uid://dixo2sk7lna21"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
@@ -7,10 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://d23m45mooqerl" path="res://obstacle.tscn" id="3_8nrnq"]
 [ext_resource type="PackedScene" uid="uid://c04vtr65erpfu" path="res://player.tscn" id="4_1ihy7"]
 [ext_resource type="Script" path="res://label_4.gd" id="5_hyhja"]
-[ext_resource type="Texture2D" uid="uid://dl5e86vak13bh" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky_lightened.png" id="5_xpauv"]
-[ext_resource type="Texture2D" uid="uid://poyba0vq26tl" path="res://Glacial-mountains-parallax-background_vnitti/Layers/glacial_mountains.png" id="5_xpmol"]
-[ext_resource type="Texture2D" uid="uid://bifwhid3qsm4t" path="res://Glacial-mountains-parallax-background_vnitti/Layers/clouds_bg.png" id="6_1forn"]
-[ext_resource type="Texture2D" uid="uid://ccft28iuhcakx" path="res://Glacial-mountains-parallax-background_vnitti/Layers/clouds_mg_1_lightened.png" id="7_dmad8"]
 [ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="7_eqgfy"]
 [ext_resource type="Script" path="res://sprite_2d.gd" id="8_adgsx"]
 [ext_resource type="PackedScene" uid="uid://0wlm1n4b3hr3" path="res://touchcontrols.tscn" id="14_q7oi1"]
@@ -28,59 +24,8 @@ despawn_distance = 2000.0
 min_gap = 500.0
 object_count = 30
 
-[node name="background" type="Node2D" parent="."]
-z_index = -7
-
-[node name="Parallax2D4" type="Parallax2D" parent="background"]
-scroll_offset = Vector2(432, -420)
-repeat_size = Vector2(785, 500)
-repeat_times = 11
-
-[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D4"]
-position = Vector2(28, -218)
-scale = Vector2(2.04688, 3.18519)
-texture = ExtResource("5_xpauv")
-centered = false
-
-[node name="Parallax2D" type="Parallax2D" parent="background"]
-visible = false
-scroll_scale = Vector2(0.1, 1)
-scroll_offset = Vector2(414, -1)
-repeat_size = Vector2(785, 0)
-repeat_times = 11
-
-[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D"]
-position = Vector2(28, -218)
-scale = Vector2(2.04688, 3.18519)
-texture = ExtResource("5_xpmol")
-centered = false
-
-[node name="Parallax2D2" type="Parallax2D" parent="background"]
-visible = false
-scroll_scale = Vector2(0.5, 1)
-repeat_size = Vector2(345, 0)
-repeat_times = 11
-
-[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D2"]
-position = Vector2(122, 220)
-scale = Vector2(0.898437, 1.13426)
-texture = ExtResource("6_1forn")
-centered = false
-
-[node name="Parallax2D3" type="Parallax2D" parent="background"]
-visible = false
-scroll_scale = Vector2(0.8, 1)
-repeat_size = Vector2(384, 0)
-repeat_times = 11
-
-[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D3"]
-position = Vector2(-33, 9)
-scale = Vector2(1, 2.10648)
-texture = ExtResource("7_dmad8")
-centered = false
-
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_1ihy7")]
-position = Vector2(137, 398)
+position = Vector2(236, 332)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-3.05176e-05, 3.05176e-05)
@@ -130,7 +75,6 @@ text = "Skill on cooldown!!
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-visible = false
 offset_left = 1976.0
 offset_top = 180.0
 offset_right = 2235.0
@@ -142,7 +86,7 @@ vertical_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.964706, 0, 1, 1)
 z_index = 2
-position = Vector2(3683, 3345.5)
+position = Vector2(3656, 3399)
 scale = Vector2(32.3594, 13.4583)
 texture = ExtResource("7_eqgfy")
 script = ExtResource("8_adgsx")
@@ -163,11 +107,17 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CanvasLayer" parent="Control" instance=ExtResource("14_q7oi1")]
+visible = false
+
+[node name="platform timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="platform timer" to="." method="_on_platform_timer_timeout"]

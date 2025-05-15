@@ -13,18 +13,18 @@ offset_bottom = 1080.0
 texture = ExtResource("2_1aru6")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 345.0
-offset_top = 436.0
-offset_right = 714.0
-offset_bottom = 573.0
+offset_left = 871.0
+offset_top = 667.0
+offset_right = 1240.0
+offset_bottom = 804.0
 theme_override_font_sizes/font_size = 50
 text = "RETRY"
 
 [node name="Label" type="Label" parent="."]
-offset_left = -5.0
-offset_top = 43.0
-offset_right = 1032.0
-offset_bottom = 244.0
+offset_left = 535.0
+offset_top = 179.0
+offset_right = 1572.0
+offset_bottom = 380.0
 theme_override_font_sizes/font_size = 100
 text = "DED"
 horizontal_alignment = 1

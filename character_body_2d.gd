@@ -7,6 +7,7 @@ var acc = 0.1
 var ret = 0.1
 var direction
 var justjumped:bool = false
+var lastvelocityx:float
 func _ready() -> void:
 	pass
 func padmechanic():
@@ -15,15 +16,13 @@ func padmechanic():
 		justjumped = true
 func _process(delta: float) -> void:
 	if S.jumppad and not is_on_floor():
+		$AnimatedSprite2D.play("jumppad")
 		velocity.x = direction * PADSPEED
 	if velocity.x < 100.0 and velocity.x > 0 and S.jump == false and not is_on_floor() and S.swinging == false:
 		velocity.x = 100.0
 	if S.jump:
 		velocity.x = direction * SPEED
 	if is_on_floor():
-		if S.jumppad:
-			$AnimatedSprite2D.play("fall")
-			
 		S.jumppad = false
 		S.jump = false
 		justjumped = false
@@ -35,10 +34,10 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.play("dash")
 		$CPUParticles2D2.emitting = true
 		$CPUParticles2D3.emitting = true
-	'''if velocity.x > 0:
+	if velocity.x > 0 and not S.swinging:
 		$AnimatedSprite2D.flip_h = false
-	elif velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true'''
+	elif velocity.x < 0 and not S.swinging:
+		$AnimatedSprite2D.flip_h = true
 func _physics_process(delta: float) -> void:
 	if S.jumppad:
 		$AnimatedSprite2D.play("swing")
@@ -69,11 +68,22 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		velocity.x = direction * SPEED
 		S.jump = true
-	if not is_on_floor() and Input.is_action_just_pressed("dash"):
+	if not is_on_floor() and Input.is_action_just_pressed("dash") and S.oncooldown == false:
+		lastvelocityx = velocity.x
 		S.dash = true
+		rotation = 0.0
+		$AnimatedSprite2D.rotation = 0.0
+		S.swinging = false
+		S.flipp = false
 		$Timer.start()
+		$Cooldown.start()
+		S.oncooldown = true
 	move_and_slide()
 
 
 func _on_timer_timeout() -> void:
 	S.dash = false
+	$AnimatedSprite2D.play("jumppad")
+
+func _on_cooldown_timeout() -> void:
+	S.oncooldown = false

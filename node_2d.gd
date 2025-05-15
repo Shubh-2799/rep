@@ -16,7 +16,9 @@ var new_body
 var positioncheck
 var slowscore:float
 var distance
+var platformspawning:bool = true
 func _ready():
+	S.jumppad = false
 	S.oncooldown = false
 	S.score = 0
 	S.mainscore = 0
@@ -24,7 +26,8 @@ func _ready():
 	player = $CharacterBody2D
 	positioncheck = player.global_position
 func _process(delta):
-	if S.reset == true and S.done == false:
+	print(player.velocity.x)
+	if S.reset == true and S.done == false or S.dash:
 		if S.rot_count == 0 or S.rot_count == 1:
 			S.mainscore += S.perswingscore
 		else:
@@ -38,6 +41,10 @@ func _process(delta):
 	$Label3.global_position = player.global_position + Vector2(70,-70)
 	$Label.global_position = player.global_position + Vector2(-120 , -100)
 	$Label2.text = "Score: " + str(S.mainscore)
+	if Input.is_action_just_pressed("dash") and S.oncooldown == true:
+		$Label3.visible = true
+		get_tree().create_timer(0.2).timeout
+		$Label3.visible = false
 	if S.flipp:
 		#distance = player.global_position.distance_to(positioncheck)
 		#print(slowscore)
@@ -61,7 +68,7 @@ func spawn_if_needed():
 		spawn_distance = 1000
 	selection = randi_range(1,10)
 	if player.global_position.x + spawn_distance > last_spawn_x + min_gap and object_count:
-		if selection == 21:
+		if selection == 21 and platformspawning:
 			new_body = street_lamp_scene.instantiate() as StaticBody2D 
 			new_body_name = "platform"
 		elif selection == 3 or selection == 4:
@@ -77,12 +84,12 @@ func spawn_if_needed():
 		var yscale:float
 		if selection != 2:
 			if selection == 3 or selection == 4:
-				xscale = randf_range(0.03 , 0.05)
-				yscale = randf_range(0.2 , 0.4)
+				xscale = randf_range(0.01 , 0.02)
+				yscale = randf_range(0.08 , 0.1)
 			else:
-				xscale = randf_range(0.0423 , 0.0913)
+				xscale = 0.059 #randf_range(0.0423 , 0.0913)
 				yscale = 0.415
-		elif selection == 21:
+		elif selection == 21 and platformspawning:
 			xscale = randf_range(-0.7,-0.9)
 			yscale = 0.03
 		
@@ -91,13 +98,15 @@ func spawn_if_needed():
 			new_body.global_position = Vector2(player.global_position.x + spawn_distance, y_pos)
 		elif new_body_name == "platform":
 			new_body.global_position = Vector2(player.global_position.x + 1900, y_pos)
+			$"platform timer".start()
+			platformspawning = false
 		elif new_body_name == "obstacle":
 			new_body.global_position = Vector2(player.global_position.x + spawn_distance, y_pos)
 		add_child(new_body)
 		spawned_objects.append(new_body)
 		
 		last_spawn_x = new_body.global_position.x  
-		if selection == 21:
+		if selection == 2:
 			print("long spawned at : " , new_body.global_position)
 			print("player position : " , player.global_position)
 func despawn_old_objects():
@@ -111,3 +120,7 @@ func despawn_old_objects():
 
 func _on_timer_timeout() -> void:
 	$Label.visible = false
+
+
+func _on_platform_timer_timeout() -> void:
+	platformspawning = true

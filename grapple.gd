@@ -24,6 +24,7 @@ var throwvel:bool
 var counted:bool = false
 var aeq = 0.0
 var after_swing_rot: bool = false
+var playercurrentvelx:float
 func _ready() -> void: 
 	S.rot_count = 0
 	sprite = $"../AnimatedSprite2D"
@@ -37,6 +38,7 @@ func _on_area_entered(area):
 		
 func _process(delta: float) -> void:
 	line.set_point_position(0, line.to_local($"../AnimatedSprite2D/Marker2D".global_position))
+	playercurrentvelx = player.velocity.x
 	if not S.dash:
 		sprite.rotation = aeq
 		release_vel = lerp(release_vel, Vector2(200.0,200.0) , 0.01)
@@ -45,17 +47,23 @@ func _process(delta: float) -> void:
 			rotation_handle()
 			if Input.is_action_just_pressed("left click"):
 				pass
-		if Input.is_action_just_pressed("left click"):
-			if raycast.is_colliding():
+		if Input.is_action_just_pressed("left click") and raycast.is_colliding():
+			var collider = raycast.get_collider(0)
+			$"../AnimatedSprite2D".flip_h = false
+			if collider and collider.has_method("rest"):
+				$"../AnimatedSprite2D".play("grapple")
+			else:
 				$"../AnimatedSprite2D".play("swing")
-				var body = raycast.get_collider(0)
-				if body.has_method("grapple_anim"):
-					body.grapple_anim()
-				S.jump = false
-				S.jumppad = false
-				S.dash = false
-				S.swinging = true
-				glaunch()
+			var body = raycast.get_collider(0)
+			if body.has_method("grapple_anim"):
+				body.grapple_anim()
+			S.jump = false
+			S.jumppad = false
+			S.dash = false
+			S.swinging = true
+			glaunch()
+		elif Input.is_action_just_pressed("left click") and not raycast.is_colliding():
+			player.velocity.x = playercurrentvelx
 		if Input.is_action_just_released("left click"):
 			gretract()
 			S.swinging = false
@@ -109,12 +117,12 @@ func _process(delta: float) -> void:
 				sprite.rotation = 0
 		if pulled:
 			pull(delta)
-		
 		if after_swing_rot:
 			
 			after_swing_rot = false
 	else:
-		pass
+		gretract()
+		launched = false
 func pretract():
 	pulled = false
 	line.hide()
@@ -126,6 +134,7 @@ func glaunch():
 	var collider = raycast.get_collider(0)
 	if collider and collider.has_method("rest"):
 		plaunch()
+		
 	else:
 		min_angular_velocity = player.velocity.x
 		sprite.rotation = 0.0
@@ -136,7 +145,10 @@ func glaunch():
 		last_swing_direction = 1  
 		line.show()
 func gretract():
-	$"../AnimatedSprite2D".play("fall")
+	if S.dash:
+		$"../AnimatedSprite2D".play("dash")
+	else:
+		$"../AnimatedSprite2D".play("fall")
 	launched = false
 	throwvel = true
 	line.hide()

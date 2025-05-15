@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc4ooqmvgt7i4"]
+[gd_scene load_steps=12 format=3 uid="uid://cc4ooqmvgt7i4"]
 
 [ext_resource type="Texture2D" uid="uid://dl5e86vak13bh" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky_lightened.png" id="1_6wl3o"]
 [ext_resource type="Script" path="res://blue block.gd" id="1_e1fek"]
-[ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="1_y1jvv"]
 [ext_resource type="Texture2D" uid="uid://r866xwtcmrf1" path="res://Glacial-mountains-parallax-background_vnitti/circle-xxl.png" id="3_8m4k8"]
+[ext_resource type="Texture2D" uid="uid://c7dqmlkrapbqt" path="res://star.png" id="3_c450m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnyt"]
-size = Vector2(125.334, 130.136)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3c227"]
+radius = 1.41367
+height = 11.7115
 
 [sub_resource type="Animation" id="Animation_jc2sl"]
 length = 0.001
@@ -92,30 +93,44 @@ _data = {
 "circle effecy": SubResource("Animation_2ncjs")
 }
 
+[sub_resource type="Gradient" id="Gradient_r8n3q"]
+offsets = PackedFloat32Array(0, 0.689024)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5lg12"]
+gradient = SubResource("Gradient_r8n3q")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.504386, 0.52193)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_my843"]
+radius = 38.5585
+height = 2425.12
+
 [node name="StaticBody2D" type="StaticBody2D"]
 scale = Vector2(0.0585552, 0.414949)
 collision_layer = 2
 script = ExtResource("1_e1fek")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-17.078, 1709.85)
-scale = Vector2(4.53632, 16.3898)
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(102.467, 860.347)
+scale = Vector2(11.9634, 17.1596)
 texture = ExtResource("1_6wl3o")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 position = Vector2(-17.0779, -1.90735e-06)
 scale = Vector2(4.53632, 0.602484)
-texture = ExtResource("1_y1jvv")
+texture = ExtResource("3_c450m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-17.0779, -1.29279e-06)
-scale = Vector2(13.8984, 1)
-shape = SubResource("RectangleShape2D_mvnyt")
+scale = Vector2(193.288, 26.7509)
+shape = SubResource("CapsuleShape2D_3c227")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.12549)
-self_modulate = Color(0, 0, 0, 1)
 z_index = -1
 position = Vector2(-1.52588e-05, 2.40994)
 scale = Vector2(0.3, 0.243)
@@ -125,3 +140,15 @@ texture = ExtResource("3_8m4k8")
 libraries = {
 "": SubResource("AnimationLibrary_685hm")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(17.0779, -4.81986)
+scale = Vector2(53.9769, 6.83894)
+color = Color(0.34, 0.270187, 0.0408, 1)
+energy = 6.0
+texture = SubResource("GradientTexture2D_5lg12")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-2.543e-09, -7.2298)
+rotation = -1.57551
+shape = SubResource("CapsuleShape2D_my843")
