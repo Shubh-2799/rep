@@ -47,21 +47,24 @@ func _process(delta: float) -> void:
 			rotation_handle()
 			if Input.is_action_just_pressed("left click"):
 				pass
-		if Input.is_action_just_pressed("left click") and raycast.is_colliding():
-			var collider = raycast.get_collider(0)
-			$"../AnimatedSprite2D".flip_h = false
-			if collider and collider.has_method("rest"):
-				$"../AnimatedSprite2D".play("grapple")
+		if Input.is_action_just_pressed("left click"):
+			if raycast.is_colliding():
+				var collider = raycast.get_collider(0)
+				$"../AnimatedSprite2D".flip_h = false
+				if collider and collider.has_method("rest"):
+					$"../AnimatedSprite2D".play("grapple")
+				else:
+					$"../AnimatedSprite2D".play("swing")
+				var body = raycast.get_collider(0)
+				if body.has_method("grapple_anim"):
+					body.grapple_anim()
+				S.jump = false
+				S.jumppad = false
+				S.dash = false
+				S.swinging = true
+				glaunch()
 			else:
-				$"../AnimatedSprite2D".play("swing")
-			var body = raycast.get_collider(0)
-			if body.has_method("grapple_anim"):
-				body.grapple_anim()
-			S.jump = false
-			S.jumppad = false
-			S.dash = false
-			S.swinging = true
-			glaunch()
+				pass
 		elif Input.is_action_just_pressed("left click") and not raycast.is_colliding():
 			player.velocity.x = playercurrentvelx
 		if Input.is_action_just_released("left click"):

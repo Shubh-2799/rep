@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc4ooqmvgt7i4"]
+[gd_scene load_steps=10 format=3 uid="uid://cc4ooqmvgt7i4"]
 
 [ext_resource type="Texture2D" uid="uid://dl5e86vak13bh" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky_lightened.png" id="1_6wl3o"]
 [ext_resource type="Script" path="res://blue block.gd" id="1_e1fek"]
 [ext_resource type="Texture2D" uid="uid://r866xwtcmrf1" path="res://Glacial-mountains-parallax-background_vnitti/circle-xxl.png" id="3_8m4k8"]
-[ext_resource type="Texture2D" uid="uid://c7dqmlkrapbqt" path="res://star.png" id="3_c450m"]
+[ext_resource type="Texture2D" uid="uid://h334jh001lu0" path="res://parallax/webp/star.webp" id="4_qek77"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3c227"]
-radius = 1.41367
-height = 11.7115
+radius = 0.441773
+height = 8.28809
 
 [sub_resource type="Animation" id="Animation_jc2sl"]
 length = 0.001
@@ -93,20 +93,9 @@ _data = {
 "circle effecy": SubResource("Animation_2ncjs")
 }
 
-[sub_resource type="Gradient" id="Gradient_r8n3q"]
-offsets = PackedFloat32Array(0, 0.689024)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5lg12"]
-gradient = SubResource("Gradient_r8n3q")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.504386, 0.52193)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_my843"]
-radius = 38.5585
-height = 2425.12
+radius = 12.0497
+height = 1537.01
 
 [node name="StaticBody2D" type="StaticBody2D"]
 scale = Vector2(0.0585552, 0.414949)
@@ -119,13 +108,8 @@ position = Vector2(102.467, 860.347)
 scale = Vector2(11.9634, 17.1596)
 texture = ExtResource("1_6wl3o")
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(-17.0779, -1.90735e-06)
-scale = Vector2(4.53632, 0.602484)
-texture = ExtResource("3_c450m")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-17.0779, -1.29279e-06)
+position = Vector2(17.0779, 0)
 scale = Vector2(193.288, 26.7509)
 shape = SubResource("CapsuleShape2D_3c227")
 
@@ -141,14 +125,12 @@ libraries = {
 "": SubResource("AnimationLibrary_685hm")
 }
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(17.0779, -4.81986)
-scale = Vector2(53.9769, 6.83894)
-color = Color(0.34, 0.270187, 0.0408, 1)
-energy = 6.0
-texture = SubResource("GradientTexture2D_5lg12")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-2.543e-09, -7.2298)
-rotation = -1.57551
+position = Vector2(17.0779, -2.40993)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_my843")
+
+[node name="Star" type="Sprite2D" parent="."]
+position = Vector2(2271.36, 775.999)
+scale = Vector2(137.168, 19.6811)
+texture = ExtResource("4_qek77")
