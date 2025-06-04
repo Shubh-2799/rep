@@ -66,58 +66,60 @@ func spawn_if_needed():
 	else:
 		spawn_distance = 1000
 
-	# Number of objects to spawn at once
-	var num_to_spawn := 6  # Tum isse customize kar sakte ho
+	var num_to_spawn := 6
 
 	if player.global_position.x + spawn_distance > last_spawn_x + min_gap and object_count >= num_to_spawn:
-		for i in range(num_to_spawn):
-			selection = randi_range(1,10)
+		var current_y = player.global_position.y + randf_range(-3600, -1600)
 
+		for i in range(num_to_spawn):
+			var selection = randi_range(1, 10)
 			var new_body: StaticBody2D
 			var new_body_name: String
 
+			# Instantiate based on selection
 			if selection == 21 and platformspawning:
-				new_body = street_lamp_scene.instantiate() as StaticBody2D 
+				new_body = street_lamp_scene.instantiate()
 				new_body_name = "platform"
-			elif selection == 3 or selection == 4:
-				new_body = obstacle_scene.instantiate() as StaticBody2D
+			elif selection == 3:
+				new_body = obstacle_scene.instantiate()
 				new_body_name = "obstacle"
 			else:
-				new_body = static_body_scene.instantiate() as StaticBody2D
+				new_body = static_body_scene.instantiate()
 				new_body_name = "normal"
 
-			object_count -= 1
-			var y_offset = randf_range(-700, -200) + i * 1000  # Vertical spread
-			var y_pos = player.global_position.y + y_offset
-
-			var xscale:float
-			var yscale:float
-
+			# Scaling
+			var xscale: float
+			var yscale: float
 			if selection != 2:
-				if selection == 3 or selection == 4:
+				if new_body_name == "obstacle":
 					xscale = randf_range(0.01 , 0.02)
 					yscale = randf_range(0.08 , 0.1)
 				else:
 					xscale = 0.059
 					yscale = 0.415
-			elif selection == 21 and platformspawning:
-				xscale = randf_range(-0.7,-0.9)
+			elif new_body_name == "platform":
+				xscale = randf_range(-0.7, -0.9)
 				yscale = 0.03
 
 			new_body.scale = Vector2(xscale, yscale)
 
-			if new_body_name == "normal":
-				new_body.global_position = Vector2(player.global_position.x + spawn_distance, y_pos)
-			elif new_body_name == "platform":
-				new_body.global_position = Vector2(player.global_position.x + 1900, y_pos)
+			# Y-position variation
+			current_y += randf_range(500, 1000)
+
+			# X-position with slight random offset
+			var x_pos = player.global_position.x + spawn_distance + randf_range(-100, 100)
+
+			if new_body_name == "platform":
+				new_body.global_position = Vector2(player.global_position.x + 1900, current_y)
 				$"platform timer".start()
 				platformspawning = false
-			elif new_body_name == "obstacle":
-				new_body.global_position = Vector2(player.global_position.x + spawn_distance, y_pos)
+			else:
+				new_body.global_position = Vector2(x_pos, current_y)
 
 			add_child(new_body)
 			spawned_objects.append(new_body)
-			last_spawn_x = max(last_spawn_x, new_body.global_position.x)  # Track furthest object only
+			last_spawn_x = max(last_spawn_x, new_body.global_position.x)
+			object_count -= 1
 
 func despawn_old_objects():
 	for obj in spawned_objects:

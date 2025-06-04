@@ -39,6 +39,12 @@ limit_left = 0
 limit_bottom = 1960
 limit_smoothed = true
 
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = 109.483
+offset_top = -247.794
+offset_right = 806.483
+offset_bottom = -103.794
+
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2(-25.9999, 729)
 scale = Vector2(0.630406, -3.98352)

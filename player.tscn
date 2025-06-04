@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b4ovc783j7ggq" path="res://Sprite-idle-Sheet (1).png" id="2_wswbc"]
 [ext_resource type="Script" path="res://grapple.gd" id="3_mhyeh"]
 [ext_resource type="Texture2D" uid="uid://dluhf32xosvfe" path="res://jump_and_fall_ (1).png" id="3_nf1p1"]
-[ext_resource type="Script" path="res://label.gd" id="4_g3nkr"]
 [ext_resource type="Texture2D" uid="uid://n88f7tkm3jow" path="res://run-Sheet.png" id="4_gch6q"]
 [ext_resource type="Script" path="res://label_3.gd" id="5_8j2b2"]
 [ext_resource type="Texture2D" uid="uid://cb43qadyt105d" path="res://swing_sprites.png" id="5_76hex"]
@@ -220,6 +219,8 @@ point_count = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou6p"]
 size = Vector2(43.1034, 111.765)
 
+[sub_resource type="GDScript" id="GDScript_n25c7"]
+
 [sub_resource type="Curve" id="Curve_jgqo2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -236,7 +237,7 @@ script = ExtResource("1_o5ldr")
 position = Vector2(4.00543e-05, -1.09673e-05)
 scale = Vector2(2.82813, 2.44118)
 sprite_frames = SubResource("SpriteFrames_vp328")
-animation = &"grapple"
+animation = &"jumppad"
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D"]
 position = Vector2(6.40121, -9.33733)
@@ -291,7 +292,7 @@ offset_bottom = -126.794
 theme_override_font_sizes/font_size = 70
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("4_g3nkr")
+script = SubResource("GDScript_n25c7")
 
 [node name="Label3" type="Label" parent="."]
 visible = false

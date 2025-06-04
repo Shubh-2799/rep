@@ -25,6 +25,8 @@ var counted:bool = false
 var aeq = 0.0
 var after_swing_rot: bool = false
 var playercurrentvelx:float
+var collider
+var was_swinging:bool = false
 func _ready() -> void: 
 	S.rot_count = 0
 	sprite = $"../AnimatedSprite2D"
@@ -49,10 +51,12 @@ func _process(delta: float) -> void:
 				pass
 		if Input.is_action_just_pressed("left click"):
 			if raycast.is_colliding():
-				var collider = raycast.get_collider(0)
+				collider = raycast.get_collider(0)
 				$"../AnimatedSprite2D".flip_h = false
 				if collider and collider.has_method("rest"):
 					$"../AnimatedSprite2D".play("grapple")
+				elif not collider:
+					player.velocity.x = playercurrentvelx
 				else:
 					$"../AnimatedSprite2D".play("swing")
 				var body = raycast.get_collider(0)
@@ -63,6 +67,7 @@ func _process(delta: float) -> void:
 				S.dash = false
 				S.swinging = true
 				glaunch()
+				was_swinging = true
 			else:
 				pass
 		elif Input.is_action_just_pressed("left click") and not raycast.is_colliding():
@@ -134,7 +139,7 @@ func plaunch():
 		pulled = true
 		line.show()
 func glaunch():
-	var collider = raycast.get_collider(0)
+	collider = raycast.get_collider(0)
 	if collider and collider.has_method("rest"):
 		plaunch()
 		
@@ -147,15 +152,18 @@ func glaunch():
 		angular_velocity = min_angular_velocity 
 		last_swing_direction = 1  
 		line.show()
+		
 func gretract():
 	if S.dash:
 		$"../AnimatedSprite2D".play("dash")
-	else:
+	elif not S.dash and was_swinging == false:
+		$"../AnimatedSprite2D".play("jumppad")
+	elif was_swinging == true and not S.dash:
 		$"../AnimatedSprite2D".play("fall")
 	launched = false
 	throwvel = true
 	line.hide()
-
+	was_swinging = false
 
 func pull(delta):
 	stiffness += 0.1
