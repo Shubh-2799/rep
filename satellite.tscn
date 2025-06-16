@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dps36tgqq1xmm"]
+
+[ext_resource type="Script" path="res://satellite.gd" id="1_ubrqu"]
+[ext_resource type="Texture2D" uid="uid://bh373f63q7iul" path="res://satellite.webp" id="2_4sj7l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dai5"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(907, 499)
+scale = Vector2(5, 5)
+script = ExtResource("1_ubrqu")
+
+[node name="Satellite" type="Sprite2D" parent="."]
+position = Vector2(40, -31)
+texture = ExtResource("2_4sj7l")
+
+[node name="Area2D" type="Area2D" parent="Satellite"]
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Satellite/Area2D"]
+position = Vector2(-40, 31)
+shape = SubResource("RectangleShape2D_5dai5")
+
+[connection signal="body_entered" from="Satellite/Area2D" to="." method="_on_area_2d_body_entered"]

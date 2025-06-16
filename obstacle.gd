@@ -9,6 +9,8 @@ func _process(delta: float) -> void:
 	pass
 
 
+
+
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if S.dash == false:
 		body.queue_free()

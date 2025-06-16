@@ -12,7 +12,7 @@ var rest_length = 50.0  # Rope ki initial length
 var stiffness = 10.0 # Rope elasticity
 var damping_factor = 10.0  # Damping to slow down movement
 var angular_velocity = 6 # Angular velocity for circular motion
-var max_angular_velocity = 6000.0 # Maximum speed for swing
+var max_angular_velocity =2000.0 # Maximum speed for swing
 var min_angular_velocity:float  # Minimum speed
 var pullstrength = 15.0
 var pulling: bool = false
@@ -202,7 +202,7 @@ func handle_swing(delta):
 
 	# **Maintain constant swing physics**
 	var swing_direction = sign(player.velocity.x)  # Current movement direction
-	
+
 	if swing_direction != last_swing_direction:
 		# Reset angular velocity when direction changes
 		angular_velocity = min_angular_velocity
@@ -213,6 +213,5 @@ func handle_swing(delta):
 	last_swing_direction = swing_direction  # Update direction
 	# Rope visual update
 	line.set_point_position(1, to_local(target))
-
 func rotation_handle():
 	sprite.rotation = 0.0

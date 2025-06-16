@@ -1,6 +1,8 @@
 extends Node2D
 @export var street_lamp_scene: PackedScene
 @export var obstacle_scene: PackedScene
+@export var satellite_scene: PackedScene
+@export var spinasteroid_scene: PackedScene
 @export var static_body_scene: PackedScene  # Preloaded StaticBody2D scene
 @export var spawn_distance: float = 500  # Distance ahead of player to spawn
 @export var despawn_distance: float = 700  # Distance behind player to despawn
@@ -17,6 +19,7 @@ var positioncheck
 var slowscore:float
 var distance
 var platformspawning:bool = true
+var x_pos
 func _ready():
 	S.jumppad = false
 	S.oncooldown = false
@@ -73,7 +76,7 @@ func spawn_if_needed():
 
 		for i in range(num_to_spawn):
 			var selection = randi_range(1, 10)
-			var new_body: StaticBody2D
+			var new_body
 			var new_body_name: String
 
 			# Instantiate based on selection
@@ -81,8 +84,16 @@ func spawn_if_needed():
 				new_body = street_lamp_scene.instantiate()
 				new_body_name = "platform"
 			elif selection == 3:
-				new_body = obstacle_scene.instantiate()
-				new_body_name = "obstacle"
+				var obstacle_selection = randi_range(1,4)
+				if obstacle_selection == 1:
+					new_body = satellite_scene.instantiate()
+					new_body_name = "satellite"
+				elif obstacle_selection == 2:
+					new_body = spinasteroid_scene.instantiate()
+					new_body_name = "spinasteroid"
+				else:
+					new_body = obstacle_scene.instantiate()
+					new_body_name = "obstacle"
 			else:
 				new_body = static_body_scene.instantiate()
 				new_body_name = "normal"
@@ -94,6 +105,12 @@ func spawn_if_needed():
 				if new_body_name == "obstacle":
 					xscale = randf_range(0.01 , 0.02)
 					yscale = randf_range(0.08 , 0.1)
+				elif new_body_name == "satellite":
+					xscale = 5
+					yscale = 5
+				elif new_body_name == "spinasteroid":
+					xscale = 2
+					yscale = 2
 				else:
 					xscale = 0.059
 					yscale = 0.415
@@ -104,10 +121,16 @@ func spawn_if_needed():
 			new_body.scale = Vector2(xscale, yscale)
 
 			# Y-position variation
-			current_y += randf_range(500, 1000)
+			if new_body_name == "spinasteroid":
+				current_y += randf_range(100, 400)
+			else:
+				current_y += randf_range(500, 1000)
 
 			# X-position with slight random offset
-			var x_pos = player.global_position.x + spawn_distance + randf_range(-100, 100)
+			if new_body_name == "spinasteroid":
+				x_pos = player.global_position.x + spawn_distance + randf_range(1000,1200)
+			else:
+				x_pos = player.global_position.x + spawn_distance + randf_range(-100, 100)
 
 			if new_body_name == "platform":
 				new_body.global_position = Vector2(player.global_position.x + 1900, current_y)

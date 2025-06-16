@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c33lsbe4blm6k"]
+[gd_scene load_steps=10 format=3 uid="uid://c33lsbe4blm6k"]
 
 [ext_resource type="Script" path="res://rec.gd" id="1_nhyof"]
 [ext_resource type="PackedScene" uid="uid://cc4ooqmvgt7i4" path="res://object.tscn" id="1_sym4l"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="4_yi3n6"]
 [ext_resource type="Script" path="res://label_4.gd" id="5_sp80v"]
 [ext_resource type="PackedScene" uid="uid://d23m45mooqerl" path="res://obstacle.tscn" id="7_0fk2w"]
+[ext_resource type="PackedScene" uid="uid://dps36tgqq1xmm" path="res://satellite.tscn" id="8_hty33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qalt"]
 size = Vector2(127.928, 128)
@@ -111,3 +112,6 @@ vertical_alignment = 1
 
 [node name="StaticBody2D" parent="." instance=ExtResource("7_0fk2w")]
 position = Vector2(1437, -684)
+
+[node name="StaticBody2D15" parent="." instance=ExtResource("8_hty33")]
+position = Vector2(215, -169)

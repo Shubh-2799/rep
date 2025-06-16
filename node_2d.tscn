@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dixo2sk7lna21"]
+[gd_scene load_steps=20 format=3 uid="uid://dixo2sk7lna21"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://cpdubros36ch6" path="res://parallax/webp/space_background3.webp" id="14_rkkyv"]
 [ext_resource type="Texture2D" uid="uid://c7qotarkh3nxk" path="res://parallax/webp/space_background2.webp" id="15_u12o0"]
 [ext_resource type="Texture2D" uid="uid://bam80hche0sop" path="res://parallax/webp/space_background1.webp" id="16_k4hvs"]
+[ext_resource type="PackedScene" uid="uid://dps36tgqq1xmm" path="res://satellite.tscn" id="17_g8w02"]
+[ext_resource type="PackedScene" uid="uid://cvagadkstedro" path="res://spinasteroid.tscn" id="18_2e5kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnyt"]
 size = Vector2(127.928, 128)
@@ -24,6 +26,8 @@ size = Vector2(127.928, 128)
 script = ExtResource("1_eo370")
 street_lamp_scene = ExtResource("2_2vqx2")
 obstacle_scene = ExtResource("3_8nrnq")
+satellite_scene = ExtResource("17_g8w02")
+spinasteroid_scene = ExtResource("18_2e5kv")
 static_body_scene = ExtResource("2_c3sqa")
 spawn_distance = 1000.0
 despawn_distance = 2000.0
@@ -31,7 +35,7 @@ min_gap = 500.0
 object_count = 30
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_1ihy7")]
-position = Vector2(236, 332)
+position = Vector2(443, 154)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-3.05176e-05, 3.05176e-05)
@@ -40,14 +44,15 @@ limit_bottom = 1960
 limit_smoothed = true
 
 [node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
-offset_left = 109.483
-offset_top = -247.794
-offset_right = 806.483
-offset_bottom = -103.794
+visible = false
+offset_left = 98.2759
+offset_top = -118.382
+offset_right = 795.276
+offset_bottom = 25.6176
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(-25.9999, 729)
-scale = Vector2(0.630406, -3.98352)
+position = Vector2(45, 424)
+scale = Vector2(0.617969, -2.71054)
 collision_layer = 4
 collision_mask = 4
 

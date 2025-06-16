@@ -15,7 +15,6 @@ func padmechanic():
 		velocity.y -= 900.0
 		justjumped = true
 func _process(delta: float) -> void:
-	$Camera2D/Label.text = str(velocity.x)
 	if S.jumppad and not is_on_floor():
 		$AnimatedSprite2D.play("jumppad")
 		velocity.x = direction * PADSPEED
@@ -39,6 +38,7 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0 and not S.swinging:
 		$AnimatedSprite2D.flip_h = true
+	$Camera2D/Label.text = str(velocity.x)
 func _physics_process(delta: float) -> void:
 	if S.jumppad:
 		$AnimatedSprite2D.play("swing")
