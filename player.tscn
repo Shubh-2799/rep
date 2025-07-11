@@ -122,7 +122,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -211,6 +211,8 @@ size = Vector2(43.1033, 111.765)
 points = PackedVector2Array(30, 0, 130, -50, 130, 50)
 
 [sub_resource type="Curve" id="Curve_3tdyn"]
+min_value = 1.99
+max_value = 2.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
@@ -237,7 +239,7 @@ script = ExtResource("1_o5ldr")
 position = Vector2(4.00543e-05, -1.09673e-05)
 scale = Vector2(2.82813, 2.44118)
 sprite_frames = SubResource("SpriteFrames_vp328")
-animation = &"jumppad"
+frame_progress = 0.258425
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D"]
 position = Vector2(6.40121, -9.33733)
@@ -347,6 +349,11 @@ one_shot = true
 [node name="jump timer" type="Timer" parent="."]
 wait_time = 0.03
 one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(114.655, 17.6471)
+target_position = Vector2(0, 54.4118)
+collision_mask = 4
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

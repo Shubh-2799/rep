@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dixo2sk7lna21"]
+[gd_scene load_steps=21 format=3 uid="uid://dixo2sk7lna21"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://label_4.gd" id="5_hyhja"]
 [ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="7_eqgfy"]
 [ext_resource type="Script" path="res://sprite_2d.gd" id="8_adgsx"]
+[ext_resource type="Script" path="res://camera_2d.gd" id="8_nxq31"]
 [ext_resource type="Texture2D" uid="uid://drnu8mdcqlvvd" path="res://parallax/webp/space_background6.webp" id="11_l4r01"]
 [ext_resource type="Texture2D" uid="uid://dj12gf74154gn" path="res://parallax/webp/space_background5.webp" id="12_170ih"]
 [ext_resource type="Texture2D" uid="uid://debo3vmqp07g4" path="res://parallax/webp/space_background4.webp" id="13_5380c"]
@@ -42,6 +43,7 @@ position = Vector2(-3.05176e-05, 3.05176e-05)
 limit_left = 0
 limit_bottom = 1960
 limit_smoothed = true
+script = ExtResource("8_nxq31")
 
 [node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
 visible = false
@@ -51,8 +53,8 @@ offset_right = 795.276
 offset_bottom = 25.6176
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(45, 424)
-scale = Vector2(0.617969, -2.71054)
+position = Vector2(44, 595)
+scale = Vector2(2.09797, -5.23054)
 collision_layer = 4
 collision_mask = 4
 
@@ -92,6 +94,7 @@ text = "Skill on cooldown!!
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 offset_left = 1976.0
 offset_top = 180.0
 offset_right = 2235.0
@@ -124,14 +127,12 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CanvasLayer" parent="Control" instance=ExtResource("14_q7oi1")]
-visible = false
 
 [node name="platform timer" type="Timer" parent="."]
 wait_time = 3.0

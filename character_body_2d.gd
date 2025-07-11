@@ -29,7 +29,10 @@ func _process(delta: float) -> void:
 	elif is_on_floor() and not direction:
 		$AnimatedSprite2D.play("default")
 	if S.dash:
-		velocity.x = 1200.0
+		if velocity.x > 0:
+			velocity.x = 1200.0
+		elif velocity.x < 0:
+			velocity.x = -1200.0
 		velocity.y = 0.0
 		$AnimatedSprite2D.play("dash")
 		$CPUParticles2D2.emitting = true
@@ -38,7 +41,6 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0 and not S.swinging:
 		$AnimatedSprite2D.flip_h = true
-	$Camera2D/Label.text = str(velocity.x)
 func _physics_process(delta: float) -> void:
 	if S.jumppad:
 		$AnimatedSprite2D.play("swing")
@@ -49,7 +51,7 @@ func _physics_process(delta: float) -> void:
 		S.resting = false
 	if not is_on_floor() : 
 		if not S.dash:
-			velocity += get_gravity() * delta
+			velocity += get_gravity() * delta * 0.7
 	direction = Input.get_axis("ui_left" , "ui_right")
 	if S.resting == false and S.swinging == false and is_on_floor():
 		velocity.x = direction * SPEED
