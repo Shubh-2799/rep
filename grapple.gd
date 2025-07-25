@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("left click"):
 				pass
 		if Input.is_action_just_pressed("left click"):
+			raycast.force_shapecast_update()
 			if raycast.is_colliding():
 				collider = raycast.get_collider(0)
 				$"../AnimatedSprite2D".flip_h = false

@@ -1,0 +1,145 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1anyf7w3dqas"]
+
+[ext_resource type="Script" path="res://controls.gd" id="1_wn4qo"]
+[ext_resource type="Texture2D" uid="uid://drnu8mdcqlvvd" path="res://parallax/webp/space_background6.webp" id="2_uobxs"]
+[ext_resource type="Texture2D" uid="uid://dj12gf74154gn" path="res://parallax/webp/space_background5.webp" id="3_ivvq0"]
+[ext_resource type="Texture2D" uid="uid://debo3vmqp07g4" path="res://parallax/webp/space_background4.webp" id="4_m6njn"]
+[ext_resource type="Texture2D" uid="uid://cpdubros36ch6" path="res://parallax/webp/space_background3.webp" id="5_qexim"]
+[ext_resource type="Texture2D" uid="uid://c7qotarkh3nxk" path="res://parallax/webp/space_background2.webp" id="6_rmcuu"]
+[ext_resource type="Texture2D" uid="uid://bam80hche0sop" path="res://parallax/webp/space_background1.webp" id="7_hkeev"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_wn4qo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1442, 553)
+scale = Vector2(4, 4)
+texture = ExtResource("2_uobxs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1442, 553)
+scale = Vector2(4, 4)
+texture = ExtResource("3_ivvq0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1442, 553)
+scale = Vector2(4, 4)
+texture = ExtResource("4_m6njn")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(1442, 553)
+scale = Vector2(4, 4)
+texture = ExtResource("5_qexim")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(1442, 553)
+scale = Vector2(4, 4)
+texture = ExtResource("6_rmcuu")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(1442, 553)
+scale = Vector2(4, 4)
+texture = ExtResource("7_hkeev")
+
+[node name="Play" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -252.0
+offset_right = 151.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Play
+"
+
+[node name="Controls" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -52.0
+offset_right = 189.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Controls"
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = 148.0
+offset_right = 189.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Quit
+"
+
+[node name="Back" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = 242.0
+offset_right = 189.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "BACK"
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.5
+offset_right = 576.5
+offset_bottom = 854.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Controls:-
+while on land
+    A-D :- move
+    space :- jump
+
+while on air
+    leftclick/P :- grapple or swing
+    M/E/right click :- spin and score
+    F/Shift/Ctrl :- dash
+while dashing, your player is [title card]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarSwing" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.5
+offset_top = 50.0
+offset_right = 191.5
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "StarSwing"
+
+[connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

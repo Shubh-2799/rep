@@ -30,13 +30,11 @@ obstacle_scene = ExtResource("3_8nrnq")
 satellite_scene = ExtResource("17_g8w02")
 spinasteroid_scene = ExtResource("18_2e5kv")
 static_body_scene = ExtResource("2_c3sqa")
-spawn_distance = 1000.0
-despawn_distance = 2000.0
+despawn_distance = 1600.0
 min_gap = 500.0
-object_count = 30
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_1ihy7")]
-position = Vector2(443, 154)
+position = Vector2(373, 268)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-3.05176e-05, 3.05176e-05)
@@ -53,7 +51,7 @@ offset_right = 795.276
 offset_bottom = 25.6176
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(44, 595)
+position = Vector2(-1112, 686)
 scale = Vector2(2.09797, -5.23054)
 collision_layer = 4
 collision_mask = 4
@@ -83,7 +81,6 @@ vertical_alignment = 1
 script = ExtResource("5_hyhja")
 
 [node name="Label3" type="Label" parent="."]
-visible = false
 offset_left = 1770.0
 offset_top = 402.0
 offset_right = 1865.0
@@ -94,7 +91,6 @@ text = "Skill on cooldown!!
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-visible = false
 offset_left = 1976.0
 offset_top = 180.0
 offset_right = 2235.0

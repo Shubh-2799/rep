@@ -3,11 +3,9 @@ extends Node2D
 @export var obstacle_scene: PackedScene
 @export var satellite_scene: PackedScene
 @export var spinasteroid_scene: PackedScene
-@export var static_body_scene: PackedScene  # Preloaded StaticBody2D scene
-@export var spawn_distance: float = 500  # Distance ahead of player to spawn
+@export var static_body_scene: PackedScene  # Preloaded StaticBody2D scene# Distance ahead of player to spawn
 @export var despawn_distance: float = 700  # Distance behind player to despawn
 @export var min_gap: float = 100  # Minimum gap between spawns
-@export var object_count: int = 10
 var new_body_name
 var dedzone: int = 2000
 var player: CharacterBody2D
@@ -64,14 +62,11 @@ func _process(delta):
 	despawn_old_objects()
 
 func spawn_if_needed():
-	if new_body_name == "platform":
-		spawn_distance = 3400
-	else:
-		spawn_distance = 1000
+	var spawn_distance = clamp(player.velocity.length() * 2 , 1200 , 2000)
+	var num_to_spawn := 50
 
-	var num_to_spawn := 6
-
-	if player.global_position.x + spawn_distance > last_spawn_x + min_gap and object_count >= num_to_spawn:
+	# Only check distance, not object_count
+	if player.global_position.x + spawn_distance > last_spawn_x + min_gap:
 		var current_y = player.global_position.y + randf_range(-3600, -1600)
 
 		for i in range(num_to_spawn):
@@ -79,12 +74,11 @@ func spawn_if_needed():
 			var new_body
 			var new_body_name: String
 
-			# Instantiate based on selection
 			if selection == 21 and platformspawning:
 				new_body = street_lamp_scene.instantiate()
 				new_body_name = "platform"
 			elif selection == 3:
-				var obstacle_selection = randi_range(1,4)
+				var obstacle_selection = randi_range(1, 4)
 				if obstacle_selection == 1:
 					new_body = satellite_scene.instantiate()
 					new_body_name = "satellite"
@@ -101,34 +95,34 @@ func spawn_if_needed():
 			# Scaling
 			var xscale: float
 			var yscale: float
-			if selection != 2:
-				if new_body_name == "obstacle":
-					xscale = randf_range(0.01 , 0.02)
-					yscale = randf_range(0.08 , 0.1)
-				elif new_body_name == "satellite":
-					xscale = 5
-					yscale = 5
-				elif new_body_name == "spinasteroid":
-					xscale = 2
-					yscale = 2
-				else:
-					xscale = 0.059
-					yscale = 0.415
+			if new_body_name == "obstacle":
+				xscale = randf_range(0.01 , 0.02)
+				yscale = randf_range(0.08 , 0.1)
+			elif new_body_name == "satellite":
+				xscale = 5
+				yscale = 5
+			elif new_body_name == "spinasteroid":
+				xscale = 2
+				yscale = 2
 			elif new_body_name == "platform":
 				xscale = randf_range(-0.7, -0.9)
 				yscale = 0.03
+			else:
+				xscale = 0.059
+				yscale = 0.415
 
 			new_body.scale = Vector2(xscale, yscale)
 
-			# Y-position variation
+			# Y-position
 			if new_body_name == "spinasteroid":
 				current_y += randf_range(100, 400)
 			else:
 				current_y += randf_range(500, 1000)
 
-			# X-position with slight random offset
+			# X-position
+			var x_pos: float
 			if new_body_name == "spinasteroid":
-				x_pos = player.global_position.x + spawn_distance + randf_range(1000,1200)
+				x_pos = player.global_position.x + spawn_distance + randf_range(1000, 1200)
 			else:
 				x_pos = player.global_position.x + spawn_distance + randf_range(-100, 100)
 
@@ -142,13 +136,11 @@ func spawn_if_needed():
 			add_child(new_body)
 			spawned_objects.append(new_body)
 			last_spawn_x = max(last_spawn_x, new_body.global_position.x)
-			object_count -= 1
 
 func despawn_old_objects():
 	for obj in spawned_objects:
 		if obj.global_position.x < player.global_position.x - despawn_distance:
 			obj.queue_free()
-			object_count += 1
 			spawned_objects.erase(obj)
 			
 

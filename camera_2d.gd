@@ -13,10 +13,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var speed = player.velocity.length()
-	if player.velocity.y < 0:
+	var speed = player.velocity.length() * 0.7
+	if not player.velocity.x == 95:
 		var t = clamp(speed/max_speed , 0.0 , 1.0)
 		var target_zoom = min_zoom.lerp(max_zoom , t)
-		zoom = zoom.lerp(target_zoom,1.0 * delta)
+		zoom = zoom.lerp(target_zoom,1.0* delta)
 	else:
 		zoom = zoom.lerp(Vector2(1.2,1.2), 1.0 * delta)

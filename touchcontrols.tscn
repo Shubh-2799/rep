@@ -3,14 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://i0ovfara0gfe" path="res://button.png" id="1_pgp6n"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-
-[node name="Left" type="TouchScreenButton" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(424, 631)
-rotation = -1.5708
-scale = Vector2(0.6, 0.6)
-texture_normal = ExtResource("1_pgp6n")
-action = "ui_left"
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -43,4 +36,4 @@ grow_vertical = 0
 [node name="Jump" type="TouchScreenButton" parent="Control2"]
 scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("1_pgp6n")
-action = "spacebar"
+action = "flip"
