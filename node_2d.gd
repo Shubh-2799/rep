@@ -27,7 +27,6 @@ func _ready():
 	player = $CharacterBody2D
 	positioncheck = player.global_position
 func _process(delta):
-	print(player.velocity.x)
 	if S.reset == true and S.done == false or S.dash:
 		if S.rot_count == 0 or S.rot_count == 1:
 			S.mainscore += S.perswingscore

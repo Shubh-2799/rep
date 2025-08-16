@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc4ooqmvgt7i4"]
+[gd_scene load_steps=8 format=3 uid="uid://cc4ooqmvgt7i4"]
 
 [ext_resource type="Script" path="res://blue block.gd" id="1_e1fek"]
-[ext_resource type="Texture2D" uid="uid://r866xwtcmrf1" path="res://Glacial-mountains-parallax-background_vnitti/circle-xxl.png" id="3_8m4k8"]
 [ext_resource type="Texture2D" uid="uid://h334jh001lu0" path="res://parallax/webp/star.webp" id="4_qek77"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3c227"]
@@ -10,81 +9,9 @@ height = 8.28809
 
 [sub_resource type="Animation" id="Animation_jc2sl"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.12549)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.3, 0.243)]
-}
 
 [sub_resource type="Animation" id="Animation_2ncjs"]
 resource_name = "circle effecy"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.184314), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.3, 0.243), Vector2(14.981, 2)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_685hm"]
 _data = {
@@ -105,13 +32,6 @@ script = ExtResource("1_e1fek")
 position = Vector2(17.0779, 0)
 scale = Vector2(193.288, 26.7509)
 shape = SubResource("CapsuleShape2D_3c227")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.12549)
-z_index = -1
-position = Vector2(-1.52588e-05, 2.40994)
-scale = Vector2(0.3, 0.243)
-texture = ExtResource("3_8m4k8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

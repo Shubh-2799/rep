@@ -21,3 +21,4 @@ var jumppad: bool = false
 var dash:bool = false
 var oncooldown:bool = false
 var test:bool = true
+var skin_number: int = 0

@@ -18,13 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 S="*res://s.gd"
-BgMusic="*res://bg_music.tscn"
-
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
+Bgmusic="*res://bgm.tscn"
 
 [dotnet]
 

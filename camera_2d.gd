@@ -17,6 +17,6 @@ func _process(delta: float) -> void:
 	if not player.velocity.x == 95:
 		var t = clamp(speed/max_speed , 0.0 , 1.0)
 		var target_zoom = min_zoom.lerp(max_zoom , t)
-		zoom = zoom.lerp(target_zoom,1.0* delta)
+		zoom = zoom.lerp(target_zoom,0.7 * delta)
 	else:
-		zoom = zoom.lerp(Vector2(1.2,1.2), 1.0 * delta)
+		zoom = zoom.lerp(Vector2(1.2,1.2), 0.7 * delta)

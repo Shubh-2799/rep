@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1anyf7w3dqas"]
+[gd_scene load_steps=10 format=3 uid="uid://d1anyf7w3dqas"]
 
 [ext_resource type="Script" path="res://controls.gd" id="1_wn4qo"]
 [ext_resource type="Texture2D" uid="uid://drnu8mdcqlvvd" path="res://parallax/webp/space_background6.webp" id="2_uobxs"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cpdubros36ch6" path="res://parallax/webp/space_background3.webp" id="5_qexim"]
 [ext_resource type="Texture2D" uid="uid://c7qotarkh3nxk" path="res://parallax/webp/space_background2.webp" id="6_rmcuu"]
 [ext_resource type="Texture2D" uid="uid://bam80hche0sop" path="res://parallax/webp/space_background1.webp" id="7_hkeev"]
+
+[sub_resource type="Theme" id="Theme_s64nu"]
+
+[sub_resource type="Theme" id="Theme_qqtdr"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_wn4qo")
@@ -48,9 +52,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -151.0
-offset_top = -252.0
+offset_top = -154.0
 offset_right = 151.0
-offset_bottom = -148.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
@@ -64,13 +68,31 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -189.0
-offset_top = -52.0
+offset_top = -24.0
 offset_right = 189.0
-offset_bottom = 52.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "Controls"
+
+[node name="Skins" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = 106.0
+offset_right = 189.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s64nu")
+theme_override_font_sizes/font_size = 70
+button_mask = 3
+text = "Skins
+"
 
 [node name="Quit" type="Button" parent="."]
 anchors_preset = 8
@@ -79,12 +101,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -189.0
-offset_top = 148.0
+offset_top = 236.0
 offset_right = 189.0
-offset_bottom = 252.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_s64nu")
 theme_override_font_sizes/font_size = 70
+button_mask = 3
 text = "Quit
 "
 
@@ -101,6 +125,7 @@ offset_right = 189.0
 offset_bottom = 346.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_qqtdr")
 theme_override_font_sizes/font_size = 70
 text = "BACK"
 
@@ -131,15 +156,15 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -191.5
-offset_top = 50.0
-offset_right = 191.5
-offset_bottom = 160.0
+offset_left = -192.0
+offset_right = 191.0
+offset_bottom = 110.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 80
 text = "StarSwing"
 
 [connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Skins" to="." method="_on_skins_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

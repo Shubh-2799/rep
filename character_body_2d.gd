@@ -8,15 +8,32 @@ var ret = 0.1
 var direction
 var justjumped:bool = false
 var lastvelocityx:float
+var skin:String
 func _ready() -> void:
-	pass
+	if S.skin_number == 0:
+		skin = "mc"
+	elif S.skin_number == 1:
+		skin = "cletus"
+	elif S.skin_number == 2:
+		skin = "felix"
+	elif S.skin_number == 3:
+		skin = "tomo"
+	elif S.skin_number == 4:
+		skin = "monkey"
+	elif S.skin_number == 5:
+		skin = "four"
+	if skin == "mc":
+		$AnimatedSprite2D/Marker2D.position = Vector2(6.096,-9.337)
+		$grapple/Line2D.default_color = Color(1,1,1,1)
+	elif skin == "monkey":
+		$grapple/Line2D.default_color = Color.html("#ffae70")
 func padmechanic():
 	if justjumped == false:
 		velocity.y -= 900.0
 		justjumped = true
 func _process(delta: float) -> void:
 	if S.jumppad and not is_on_floor():
-		$AnimatedSprite2D.play("jumppad")
+		$AnimatedSprite2D.play(skin + "_jumppad")
 		velocity.x = direction * PADSPEED
 	if velocity.x < 100.0 and velocity.x > 0 and S.jump == false and not is_on_floor() and S.swinging == false:
 		velocity.x = 100.0
@@ -27,26 +44,29 @@ func _process(delta: float) -> void:
 		S.jump = false
 		justjumped = false
 	elif is_on_floor() and not direction:
-		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play(skin + "_idle")
 	if S.dash:
+		velocity.x = 1200.0
 		if velocity.x > 0:
 			velocity.x = 1200.0
 		elif velocity.x < 0:
 			velocity.x = -1200.0
 		velocity.y = 0.0
-		$AnimatedSprite2D.play("dash")
+		$AnimatedSprite2D.play(skin + "_dash")
 		$CPUParticles2D2.emitting = true
 		$CPUParticles2D3.emitting = true
 	if velocity.x > 0 and not S.swinging:
 		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0 and not S.swinging:
 		$AnimatedSprite2D.flip_h = true
+	
 func _physics_process(delta: float) -> void:
 	if S.jumppad:
-		$AnimatedSprite2D.play("swing")
+		$AnimatedSprite2D.play(skin +"_swing")
 		padmechanic()
 	if S.resting:
-		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.play(skin + "_idle")
 		$AnimatedSprite2D.rotation = 0
 		S.resting = false
 	if not is_on_floor() : 
@@ -56,18 +76,18 @@ func _physics_process(delta: float) -> void:
 	if S.resting == false and S.swinging == false and is_on_floor():
 		velocity.x = direction * SPEED
 		if velocity.x > 0:
-			$AnimatedSprite2D.play("run")
+			$AnimatedSprite2D.play(skin +"_run")
 			$AnimatedSprite2D.flip_h = false
 		elif velocity.x < 0:
-			$AnimatedSprite2D.play("run")
+			$AnimatedSprite2D.play(skin +"_run")
 			$AnimatedSprite2D.flip_h = true
 		elif velocity.x == 0:
-			$AnimatedSprite2D.play("default")
+			$AnimatedSprite2D.play(skin +"_idle")
 		
 	else:
 		velocity.x = move_toward(velocity.x , 0 , SPEED * delta)
 	if is_on_floor() and Input.is_action_just_pressed("spacebar"):
-		$AnimatedSprite2D.play("fall")
+		$AnimatedSprite2D.play(skin + "_fall")
 		velocity.y = JUMP_VELOCITY
 		velocity.x = direction * SPEED
 		S.jump = true
@@ -86,7 +106,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	S.dash = false
-	$AnimatedSprite2D.play("jumppad")
+	$AnimatedSprite2D.play(skin + "_jumppad")
 
 func _on_cooldown_timeout() -> void:
 	S.oncooldown = false

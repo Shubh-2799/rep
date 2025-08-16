@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://0wlm1n4b3hr3"]
+[gd_scene load_steps=3 format=3 uid="uid://0wlm1n4b3hr3"]
 
 [ext_resource type="Texture2D" uid="uid://i0ovfara0gfe" path="res://button.png" id="1_pgp6n"]
+[ext_resource type="Texture2D" uid="uid://b421d3mhh88b8" path="res://swing_button.png" id="2_36ovi"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-visible = false
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(43, 706)
+scale = Vector2(0.300781, 0.3125)
+texture_normal = ExtResource("1_pgp6n")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -34,6 +40,7 @@ offset_bottom = -166.0
 grow_vertical = 0
 
 [node name="Jump" type="TouchScreenButton" parent="Control2"]
-scale = Vector2(0.8, 0.8)
-texture_normal = ExtResource("1_pgp6n")
+position = Vector2(0, -5.99999)
+scale = Vector2(0.820312, 0.839844)
+texture_normal = ExtResource("2_36ovi")
 action = "flip"

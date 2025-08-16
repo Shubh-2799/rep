@@ -27,7 +27,20 @@ var after_swing_rot: bool = false
 var playercurrentvelx:float
 var collider
 var was_swinging:bool = false
+var skin:String
 func _ready() -> void: 
+	if S.skin_number == 0:
+		skin = "mc"
+	elif S.skin_number == 1:
+		skin = "cletus"
+	elif S.skin_number == 2:
+		skin = "felix"
+	elif S.skin_number == 3:
+		skin = "tomo"
+	elif S.skin_number == 4:
+		skin = "monkey"
+	elif S.skin_number == 5:
+		skin = "four"
 	S.rot_count = 0
 	sprite = $"../AnimatedSprite2D"
 	actualrotation = sprite.rotation
@@ -59,7 +72,9 @@ func _process(delta: float) -> void:
 				elif not collider:
 					player.velocity.x = playercurrentvelx
 				else:
-					$"../AnimatedSprite2D".play("swing")
+					$"../AnimatedSprite2D".play(skin + "_swing")
+					if skin == "monkey":
+						$"../AnimationPlayer".play("monkey_swing")
 				var body = raycast.get_collider(0)
 				if body.has_method("grapple_anim"):
 					body.grapple_anim()
@@ -156,11 +171,11 @@ func glaunch():
 		
 func gretract():
 	if S.dash:
-		$"../AnimatedSprite2D".play("dash")
+		$"../AnimatedSprite2D".play(skin + "_dash")
 	elif not S.dash and was_swinging == false:
-		$"../AnimatedSprite2D".play("jumppad")
+		$"../AnimatedSprite2D".play(skin + "_jumppad")
 	elif was_swinging == true and not S.dash:
-		$"../AnimatedSprite2D".play("fall")
+		$"../AnimatedSprite2D".play(skin + "_fall")
 	launched = false
 	throwvel = true
 	line.hide()

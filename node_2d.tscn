@@ -1,14 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://dixo2sk7lna21"]
+[gd_scene load_steps=19 format=3 uid="uid://dixo2sk7lna21"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
 [ext_resource type="PackedScene" uid="uid://cc4ooqmvgt7i4" path="res://object.tscn" id="2_c3sqa"]
 [ext_resource type="Texture2D" uid="uid://73a2j40ei0cs" path="res://icon.svg" id="2_vawx2"]
 [ext_resource type="PackedScene" uid="uid://d23m45mooqerl" path="res://obstacle.tscn" id="3_8nrnq"]
-[ext_resource type="PackedScene" uid="uid://c04vtr65erpfu" path="res://player.tscn" id="4_1ihy7"]
+[ext_resource type="PackedScene" uid="uid://dcc35qiw87u1q" path="res://player.tscn" id="4_1ihy7"]
 [ext_resource type="Script" path="res://label_4.gd" id="5_hyhja"]
-[ext_resource type="Texture2D" uid="uid://c6chfb0p7k4oi" path="res://Glacial-mountains-parallax-background_vnitti/Layers/sky.png" id="7_eqgfy"]
-[ext_resource type="Script" path="res://sprite_2d.gd" id="8_adgsx"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="8_nxq31"]
 [ext_resource type="Texture2D" uid="uid://drnu8mdcqlvvd" path="res://parallax/webp/space_background6.webp" id="11_l4r01"]
 [ext_resource type="Texture2D" uid="uid://dj12gf74154gn" path="res://parallax/webp/space_background5.webp" id="12_170ih"]
@@ -34,7 +32,7 @@ despawn_distance = 1600.0
 min_gap = 500.0
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_1ihy7")]
-position = Vector2(373, 268)
+position = Vector2(376, 297)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-3.05176e-05, 3.05176e-05)
@@ -91,6 +89,7 @@ text = "Skill on cooldown!!
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 offset_left = 1976.0
 offset_top = 180.0
 offset_right = 2235.0
@@ -98,14 +97,6 @@ offset_bottom = 263.0
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.964706, 0, 1, 1)
-z_index = 2
-position = Vector2(3656, 3399)
-scale = Vector2(32.3594, 13.4583)
-texture = ExtResource("7_eqgfy")
-script = ExtResource("8_adgsx")
 
 [node name="Label" type="Label" parent="."]
 visible = false

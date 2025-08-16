@@ -27,6 +27,8 @@ func _on_controls_pressed() -> void:
 	$Play.disabled = true
 	$Controls.visible = false
 	$Controls.disabled = true
+	$Skins.visible = false
+	$Skins.disabled = true
 	$Quit.visible = false
 	$Quit.disabled = true
 	$Back.visible = true
@@ -40,8 +42,14 @@ func _on_back_pressed() -> void:
 	$Play.disabled = false
 	$Controls.visible = true
 	$Controls.disabled = false
+	$Skins.visible = true
+	$Skins.disabled = false
 	$Quit.visible = true
 	$Quit.disabled = false
 	$Back.visible = false
 	$Back.disabled = true
 	$Label.visible = false
+
+
+func _on_skins_pressed() -> void:
+	get_tree().change_scene_to_file("res://skinselection.tscn")

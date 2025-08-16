@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://rec.gd" id="1_nhyof"]
 [ext_resource type="PackedScene" uid="uid://cc4ooqmvgt7i4" path="res://object.tscn" id="1_sym4l"]
-[ext_resource type="PackedScene" uid="uid://c04vtr65erpfu" path="res://player.tscn" id="2_3p03d"]
+[ext_resource type="PackedScene" uid="uid://dcc35qiw87u1q" path="res://player.tscn" id="2_3p03d"]
 [ext_resource type="Texture2D" uid="uid://73a2j40ei0cs" path="res://icon.svg" id="3_fiurh"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="4_yi3n6"]
 [ext_resource type="Script" path="res://label_4.gd" id="5_sp80v"]
@@ -20,7 +20,7 @@ position = Vector2(57.9999, -116)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0.000137329, -7.62939e-06)
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(1.5, 1.5)
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2(-575, 143)
