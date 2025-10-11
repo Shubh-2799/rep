@@ -1,18 +1,15 @@
-[gd_scene load_steps=91 format=3 uid="uid://f38doesjy6xx"]
+[gd_scene load_steps=89 format=3 uid="uid://f38doesjy6xx"]
 
 [ext_resource type="Texture2D" uid="uid://drnu8mdcqlvvd" path="res://parallax/webp/space_background6.webp" id="1_6l8ve"]
 [ext_resource type="Script" path="res://skinselection.gd" id="1_koi2p"]
-[ext_resource type="Texture2D" uid="uid://dj12gf74154gn" path="res://parallax/webp/space_background5.webp" id="2_nkj4c"]
-[ext_resource type="Texture2D" uid="uid://debo3vmqp07g4" path="res://parallax/webp/space_background4.webp" id="3_lkji6"]
-[ext_resource type="Texture2D" uid="uid://cpdubros36ch6" path="res://parallax/webp/space_background3.webp" id="4_pcf4f"]
-[ext_resource type="Texture2D" uid="uid://c7qotarkh3nxk" path="res://parallax/webp/space_background2.webp" id="5_bncd1"]
-[ext_resource type="Texture2D" uid="uid://bam80hche0sop" path="res://parallax/webp/space_background1.webp" id="6_ikjr2"]
 [ext_resource type="Texture2D" uid="uid://c88nt11cvgwc4" path="res://femboy_breathing_.webp" id="7_c8dxd"]
 [ext_resource type="Texture2D" uid="uid://b4ovc783j7ggq" path="res://Sprite-idle-Sheet (1).png" id="8_ahgbr"]
 [ext_resource type="Texture2D" uid="uid://cwg327dqf4ejj" path="res://femboy_2_.webp" id="9_2m4v3"]
 [ext_resource type="Texture2D" uid="uid://bchxdsik52c2" path="res://reed_idle2.webp" id="10_e7och"]
 [ext_resource type="Texture2D" uid="uid://dgxf7itp3y354" path="res://reed_idle3.webp" id="11_5xm53"]
+[ext_resource type="Texture2D" uid="uid://vd5bevt4h7xo" path="res://raven_idle.png" id="11_gda3c"]
 [ext_resource type="Texture2D" uid="uid://cmynubsrh4xis" path="res://luffy_-Sheet.webp" id="12_1diqs"]
+[ext_resource type="Texture2D" uid="uid://bp8hu83vwdq6o" path="res://skinshadow.png" id="12_ih734"]
 [ext_resource type="Texture2D" uid="uid://d3hh56sfldjc0" path="res://tomo_chan_from_wish_.webp" id="13_8ucyg"]
 [ext_resource type="Texture2D" uid="uid://pm7k4buhsbq1" path="res://arrow.png" id="15_ihtex"]
 [ext_resource type="FontFile" uid="uid://c2elbnphus5bl" path="res://Daydream.ttf" id="16_kuhgh"]
@@ -264,6 +261,10 @@ region = Rect2(580, 0, 29, 45)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1r4j"]
 atlas = ExtResource("12_1diqs")
 region = Rect2(609, 0, 29, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsdy3"]
+atlas = ExtResource("11_gda3c")
+region = Rect2(0, 0, 326, 419)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uyqlg"]
 atlas = ExtResource("13_8ucyg")
@@ -546,6 +547,19 @@ animations = [{
 "name": &"monkey",
 "speed": 17.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsdy3")
+}],
+"loop": true,
+"name": &"raven",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uyqlg")
@@ -589,40 +603,11 @@ animations = [{
 script = ExtResource("1_koi2p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.368627)
+modulate = Color(0.0142752, 0.0142752, 0.0142752, 1)
+z_index = -2
 position = Vector2(1442, 553)
 scale = Vector2(4, 4)
 texture = ExtResource("1_6l8ve")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.368627)
-position = Vector2(1442, 553)
-scale = Vector2(4, 4)
-texture = ExtResource("2_nkj4c")
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.368627)
-position = Vector2(1442, 553)
-scale = Vector2(4, 4)
-texture = ExtResource("3_lkji6")
-
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.368627)
-position = Vector2(1442, 553)
-scale = Vector2(4, 4)
-texture = ExtResource("4_pcf4f")
-
-[node name="Sprite2D5" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.368627)
-position = Vector2(1442, 553)
-scale = Vector2(4, 4)
-texture = ExtResource("5_bncd1")
-
-[node name="Sprite2D6" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.368627)
-position = Vector2(1442, 553)
-scale = Vector2(4, 4)
-texture = ExtResource("6_ikjr2")
 
 [node name="Button" type="Button" parent="."]
 anchors_preset = 6
@@ -638,6 +623,7 @@ grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(2, 2)
 icon = ExtResource("15_ihtex")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="."]
 anchors_preset = 4
@@ -651,6 +637,7 @@ grow_vertical = 2
 rotation = 3.14159
 scale = Vector2(2, 2)
 icon = ExtResource("15_ihtex")
+metadata/_edit_use_anchors_ = true
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -658,15 +645,15 @@ icon = ExtResource("15_ihtex")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -216.5
-offset_top = 100.0
-offset_right = 216.5
-offset_bottom = 180.0
+offset_left = -234.0
+offset_top = 39.0
+offset_right = 199.0
+offset_bottom = 119.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("16_kuhgh")
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 8
@@ -680,13 +667,26 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer"]
-position = Vector2(11.9805, 33.4834)
 scale = Vector2(5.37047, 5.53407)
 sprite_frames = SubResource("SpriteFrames_e63x5")
-animation = &"four"
-frame_progress = 0.723451
+animation = &"felix"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CenterContainer"]
+self_modulate = Color(1, 1, 1, 0.686275)
+position = Vector2(-300, 0)
+scale = Vector2(3.37, 3.473)
+sprite_frames = SubResource("SpriteFrames_e63x5")
+animation = &"new_animation"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CenterContainer"]
+self_modulate = Color(1, 1, 1, 0.686275)
+position = Vector2(300, 0)
+scale = Vector2(3.37, 3.473)
+sprite_frames = SubResource("SpriteFrames_e63x5")
+animation = &"new_animation"
 
 [node name="Button3" type="Button" parent="."]
 anchors_preset = 7
@@ -694,15 +694,35 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -148.0
-offset_right = 128.0
-offset_bottom = -73.0
+offset_left = -116.0
+offset_top = -75.0
+offset_right = 70.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("16_kuhgh")
 theme_override_font_sizes/font_size = 50
 text = "PICK"
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Skinshadow" type="Sprite2D" parent="CenterContainer2"]
+z_index = -1
+position = Vector2(0, 60)
+scale = Vector2(1.85937, 2.89844)
+texture = ExtResource("12_ih734")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

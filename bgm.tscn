@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dndho64ej8b2a"]
+[gd_scene load_steps=4 format=3 uid="uid://dndho64ej8b2a"]
 
-[ext_resource type="AudioStream" uid="uid://dqd55bljndll3" path="res://new music.mp3" id="1_s3to2"]
+[ext_resource type="AudioStream" uid="uid://dket773fxj3po" path="res://new.mp3" id="1_a3nfa"]
+[ext_resource type="Script" path="res://bgm.gd" id="2_e5e25"]
+[ext_resource type="AudioStream" uid="uid://bo5y3qj6nxsrj" path="res://attempt.mp3" id="3_8t3fu"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_s3to2")
+stream = ExtResource("1_a3nfa")
 autoplay = true
+script = ExtResource("2_e5e25")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8t3fu")

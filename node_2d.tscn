@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dixo2sk7lna21"]
+[gd_scene load_steps=25 format=3 uid="uid://dixo2sk7lna21"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eo370"]
 [ext_resource type="PackedScene" uid="uid://c6c6fs2t31vja" path="res://Streetlamp.tscn" id="2_2vqx2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dcc35qiw87u1q" path="res://player.tscn" id="4_1ihy7"]
 [ext_resource type="Script" path="res://label_4.gd" id="5_hyhja"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="8_nxq31"]
+[ext_resource type="Texture2D" uid="uid://bhjf8pf73sjr8" path="res://blackcircle.png" id="9_40017"]
 [ext_resource type="Texture2D" uid="uid://drnu8mdcqlvvd" path="res://parallax/webp/space_background6.webp" id="11_l4r01"]
 [ext_resource type="Texture2D" uid="uid://dj12gf74154gn" path="res://parallax/webp/space_background5.webp" id="12_170ih"]
 [ext_resource type="Texture2D" uid="uid://debo3vmqp07g4" path="res://parallax/webp/space_background4.webp" id="13_5380c"]
@@ -17,9 +18,122 @@
 [ext_resource type="Texture2D" uid="uid://bam80hche0sop" path="res://parallax/webp/space_background1.webp" id="16_k4hvs"]
 [ext_resource type="PackedScene" uid="uid://dps36tgqq1xmm" path="res://satellite.tscn" id="17_g8w02"]
 [ext_resource type="PackedScene" uid="uid://cvagadkstedro" path="res://spinasteroid.tscn" id="18_2e5kv"]
+[ext_resource type="PackedScene" uid="uid://dkxowry2dp2es" path="res://gambling.tscn" id="19_2fd6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnyt"]
 size = Vector2(127.928, 128)
+
+[sub_resource type="Animation" id="Animation_01doj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_q8q8e"]
+resource_name = "gambling"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(8.62, 7.35)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1.6354e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 2), Vector2(-1, -1), Vector2(9, 2), Vector2(-6, 8), Vector2(3, -10), Vector2(-6, 3), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3dk6v"]
+resource_name = "ungambling"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8.62, 7.35), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u86ta"]
+_data = {
+"RESET": SubResource("Animation_01doj"),
+"gambling": SubResource("Animation_q8q8e"),
+"ungambling": SubResource("Animation_3dk6v")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_eo370")
@@ -42,15 +156,19 @@ limit_smoothed = true
 script = ExtResource("8_nxq31")
 
 [node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
-visible = false
 offset_left = 98.2759
 offset_top = -118.382
 offset_right = 795.276
 offset_bottom = 25.6176
 
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+z_index = 5
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("9_40017")
+
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2(-1112, 686)
-scale = Vector2(2.09797, -5.23054)
+scale = Vector2(2.18168, -4.55474)
 collision_layer = 4
 collision_mask = 4
 
@@ -89,7 +207,6 @@ text = "Skill on cooldown!!
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-visible = false
 offset_left = 1976.0
 offset_top = 180.0
 offset_right = 2235.0
@@ -186,6 +303,13 @@ repeat_times = 4
 position = Vector2(1442, 553)
 scale = Vector2(4, 4)
 texture = ExtResource("16_k4hvs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u86ta")
+}
+
+[node name="CanvasLayer" parent="." instance=ExtResource("19_2fd6f")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="platform timer" to="." method="_on_platform_timer_timeout"]

@@ -1,0 +1,624 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkxowry2dp2es"]
+
+[ext_resource type="Script" path="res://gambling.gd" id="1_j7tw2"]
+[ext_resource type="FontFile" uid="uid://c2elbnphus5bl" path="res://Daydream.ttf" id="1_p5g1n"]
+[ext_resource type="Texture2D" uid="uid://fk64mkg1nhsf" path="res://slot.png" id="3_5abyh"]
+[ext_resource type="Texture2D" uid="uid://klesf4xqittx" path="res://multiplier.png" id="4_erdj0"]
+[ext_resource type="Texture2D" uid="uid://21gsre1nc1qh" path="res://dashinc.png" id="5_m46uy"]
+[ext_resource type="Texture2D" uid="uid://b7non0rui03o7" path="res://gravity.png" id="6_bhc64"]
+[ext_resource type="Texture2D" uid="uid://b5hqo84foyeaa" path="res://cross.png" id="7_pqrju"]
+
+[sub_resource type="Animation" id="Animation_qjpvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer3/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer4/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-300, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer9/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-450, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Major L"]
+}
+
+[sub_resource type="Animation" id="Animation_33a5a"]
+resource_name = "dash"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1e-05, 1, 1, 1, 1e-05, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer3/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1e-05, 1, 1, 1, 1e-05, 1, 1),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer4/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.19209e-07, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1e-05, 1, 1, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer9/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1e-05, 1, 1, 1, 1e-05),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.03333, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Dash increased", ""]
+}
+
+[sub_resource type="Animation" id="Animation_m3ic7"]
+resource_name = "grav"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1e-05, 1, 1, 1, 1e-05, 1, 1, 1, 1e-05),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer3/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.19209e-07, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1e-05, 1, 1, 1, 1e-05, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer4/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1e-05, 1, 1, 1, 1e-05, 1, 1),
+"update": 0,
+"values": [Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer9/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1e-05, 1, 1, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.03333, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Gravity reduced", ""]
+}
+
+[sub_resource type="Animation" id="Animation_i22fc"]
+resource_name = "lose"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1e-05, 1, 1, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer3/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1e-05, 1, 1, 1, 1e-05),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer4/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1e-05, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer9/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1e-05, 1, 1),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.03333, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Major L", ""]
+}
+
+[sub_resource type="Animation" id="Animation_4pjqa"]
+resource_name = "star"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1e-05, 1, 1, 1, 1e-05, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer3/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1e-05, 1, 1, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer4/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1e-05, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0), Vector2(300, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer9/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1e-05, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(-300, 0), Vector2(-150, 0), Vector2(-2.38419e-06, -4.76837e-06), Vector2(150, 0), Vector2(300, 0), Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.03333, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Score multiplier", ""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hlumd"]
+_data = {
+"RESET": SubResource("Animation_qjpvt"),
+"dash": SubResource("Animation_33a5a"),
+"grav": SubResource("Animation_m3ic7"),
+"lose": SubResource("Animation_i22fc"),
+"star": SubResource("Animation_4pjqa")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_j7tw2")
+
+[node name="0" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -436.0
+offset_top = -138.0
+offset_right = -397.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_p5g1n")
+theme_override_font_sizes/font_size = 30
+text = "0
+"
+
+[node name="thousand" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -226.0
+offset_top = -138.0
+offset_right = -105.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_p5g1n")
+theme_override_font_sizes/font_size = 30
+text = "1000
+"
+
+[node name="threethousand" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -138.0
+offset_right = 156.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_p5g1n")
+theme_override_font_sizes/font_size = 30
+text = "3000
+"
+
+[node name="fivethousand" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 274.0
+offset_top = -138.0
+offset_right = 403.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_p5g1n")
+theme_override_font_sizes/font_size = 30
+text = "5000
+"
+
+[node name="Label" type="Label" parent="."]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -268.0
+offset_right = 63.0
+offset_bottom = -201.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_p5g1n")
+theme_override_font_sizes/font_size = 50
+text = "Major L"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 20.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_5abyh")
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/Sprite2D"]
+offset_left = -28.0
+offset_top = -28.0
+offset_right = 28.0
+offset_bottom = 28.0
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 20.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer2"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_erdj0")
+
+[node name="CenterContainer3" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 20.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer3"]
+position = Vector2(-150, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("5_m46uy")
+
+[node name="CenterContainer4" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 20.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer4"]
+position = Vector2(-300, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("6_bhc64")
+
+[node name="CenterContainer9" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 20.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer9"]
+position = Vector2(-450, 0)
+scale = Vector2(1.5, 1.47)
+texture = ExtResource("7_pqrju")
+
+[node name="CenterContainer5" type="CenterContainer" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = -114.0
+offset_right = 84.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer5"]
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer5/Sprite2D"]
+offset_top = -157.0
+offset_right = 532.0
+offset_bottom = 255.0
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer6" type="CenterContainer" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -609.0
+offset_top = -114.0
+offset_right = -569.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer6"]
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer6/Sprite2D"]
+offset_left = 33.0
+offset_top = -157.0
+offset_right = 525.0
+offset_bottom = 255.0
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer7" type="CenterContainer" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -609.0
+offset_top = -114.0
+offset_right = -569.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer7"]
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer7/Sprite2D"]
+offset_left = 352.0
+offset_top = 65.0
+offset_right = 877.0
+offset_bottom = 255.0
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer8" type="CenterContainer" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -609.0
+offset_top = -114.0
+offset_right = -569.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer8"]
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer8/Sprite2D"]
+offset_left = 351.0
+offset_top = -157.0
+offset_right = 876.0
+offset_bottom = -64.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hlumd")
+}
+
+[connection signal="pressed" from="0" to="." method="_on__pressed"]
+[connection signal="pressed" from="thousand" to="." method="_on_thousand_pressed"]
+[connection signal="pressed" from="threethousand" to="." method="_on_threethousand_pressed"]
+[connection signal="pressed" from="fivethousand" to="." method="_on_fivethousand_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

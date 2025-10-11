@@ -6,6 +6,9 @@ extends Node2D
 @export var static_body_scene: PackedScene  # Preloaded StaticBody2D scene# Distance ahead of player to spawn
 @export var despawn_distance: float = 700  # Distance behind player to despawn
 @export var min_gap: float = 100  # Minimum gap between spawns
+var chunk_size := Vector2(2000, 2000) # ek chunk ka size
+var active_radius := 2                # kitne chunks tak load karna hai (x aur y)
+var loaded_chunks := {} 
 var new_body_name
 var dedzone: int = 2000
 var player: CharacterBody2D
@@ -19,6 +22,7 @@ var distance
 var platformspawning:bool = true
 var x_pos
 func _ready():
+	$CanvasLayer.visible = false
 	S.jumppad = false
 	S.oncooldown = false
 	S.score = 0
@@ -48,7 +52,7 @@ func _process(delta):
 	if S.flipp:
 		#distance = player.global_position.distance_to(positioncheck)
 		#print(slowscore)
-		S.perswingscore += 1
+		S.perswingscore += 1 * S.multi 
 		$Label3.text = "+" + str(S.perswingscore)
 		$Label3.visible = true
 		positioncheck = player.global_position
@@ -57,8 +61,88 @@ func _process(delta):
 	if player.global_position.y > dedzone :
 		player.queue_free()
 		get_tree().change_scene_to_file("res://a.tscn")
+	if S.justgamble:
+		S.gamble = false
+		S.justgamble = false
+		$Control/CanvasLayer.visible = true
+		print("aagaya")
+		
+	var player_chunk = get_chunk_coords(player.global_position)
+	#update_chunks(player_chunk)
 	spawn_if_needed()
 	despawn_old_objects()
+
+func get_chunk_coords(pos: Vector2) -> Vector2i:
+	return Vector2i(floor(pos.x / chunk_size.x), floor(pos.y / chunk_size.y))
+
+
+func update_chunks(center_chunk: Vector2i):
+	var needed_chunks = []
+
+	# Center ke around active_radius tak chunks collect karo
+	for x in range(center_chunk.x - active_radius, center_chunk.x + active_radius + 1):
+		for y in range(center_chunk.y - active_radius, center_chunk.y + active_radius + 1):
+			needed_chunks.append(Vector2i(x, y))
+
+	# Load new chunks
+	for chunk in needed_chunks:
+		if not loaded_chunks.has(chunk):
+			spawn_chunk(chunk.x , chunk.y)
+
+	# Unload chunks jo ab nahi chahiye
+	for chunk in loaded_chunks.keys():
+		if chunk not in needed_chunks:
+			despawn_chunk(chunk)
+
+
+func spawn_chunk(chunk_x: int, chunk_y: int):
+	var chunk_size = 2000
+	var num_to_spawn = 20
+	var min_distance = 400  # minimum gap between spawned objects
+
+	if not loaded_chunks.has(Vector2i(chunk_x, chunk_y)):
+		loaded_chunks[Vector2i(chunk_x, chunk_y)] = []
+
+	var chunk_origin = Vector2(chunk_x * chunk_size, chunk_y * chunk_size)
+	var placed_positions: Array[Vector2] = []
+
+	for i in range(num_to_spawn):
+		var new_body = static_body_scene.instantiate()
+		var try_count = 0
+		var pos: Vector2
+
+		while true:
+			# random position inside this chunk
+			pos = chunk_origin + Vector2(
+				randf_range(200, chunk_size - 200),
+				randf_range(200, chunk_size - 200)
+			)
+
+			# check distance from all placed objects in this chunk
+			var too_close = false
+			for existing_pos in placed_positions:
+				if existing_pos.distance_to(pos) < min_distance:
+					too_close = true
+					break
+
+			if not too_close:
+				break
+
+			try_count += 1
+			if try_count > 20: # give up after 20 tries
+				break
+
+		placed_positions.append(pos)
+		new_body.global_position = pos
+		add_child(new_body)
+		loaded_chunks[Vector2i(chunk_x, chunk_y)].append(new_body)
+
+
+func despawn_chunk(chunk: Vector2i):
+	if loaded_chunks.has(chunk):
+		for obj in loaded_chunks[chunk]:
+			obj.queue_free()
+		loaded_chunks.erase(chunk)
 
 func spawn_if_needed():
 	var spawn_distance = clamp(player.velocity.length() * 2 , 1200 , 2000)

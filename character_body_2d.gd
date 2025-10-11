@@ -9,6 +9,7 @@ var direction
 var justjumped:bool = false
 var lastvelocityx:float
 var skin:String
+var played_once = false
 func _ready() -> void:
 	if S.skin_number == 0:
 		skin = "mc"
@@ -32,6 +33,9 @@ func padmechanic():
 		velocity.y -= 900.0
 		justjumped = true
 func _process(delta: float) -> void:
+	
+	if velocity.x > 5000.0:
+		velocity.x = 5000.0
 	if S.jumppad and not is_on_floor():
 		$AnimatedSprite2D.play(skin + "_jumppad")
 		velocity.x = direction * PADSPEED
@@ -46,6 +50,7 @@ func _process(delta: float) -> void:
 	elif is_on_floor() and not direction:
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.play(skin + "_idle")
+		
 	if S.dash:
 		velocity.x = 1200.0
 		if velocity.x > 0:
@@ -61,46 +66,61 @@ func _process(delta: float) -> void:
 	elif velocity.x < 0 and not S.swinging:
 		$AnimatedSprite2D.flip_h = true
 	
+	
 func _physics_process(delta: float) -> void:
-	if S.jumppad:
-		$AnimatedSprite2D.play(skin +"_swing")
-		padmechanic()
-	if S.resting:
-		$AnimatedSprite2D.play(skin + "_idle")
-		$AnimatedSprite2D.rotation = 0
-		S.resting = false
-	if not is_on_floor() : 
-		if not S.dash:
-			velocity += get_gravity() * delta * 0.7
-	direction = Input.get_axis("ui_left" , "ui_right")
-	if S.resting == false and S.swinging == false and is_on_floor():
-		velocity.x = direction * SPEED
-		if velocity.x > 0:
-			$AnimatedSprite2D.play(skin +"_run")
-			$AnimatedSprite2D.flip_h = false
-		elif velocity.x < 0:
-			$AnimatedSprite2D.play(skin +"_run")
-			$AnimatedSprite2D.flip_h = true
-		elif velocity.x == 0:
-			$AnimatedSprite2D.play(skin +"_idle")
-		
+	if not S.gamble:
+		if Input.is_action_just_pressed("gamble"):
+			S.gamble = true
+		if S.jumppad:
+			$AnimatedSprite2D.play(skin +"_swing")
+			padmechanic()
+		if S.resting:
+			$AnimatedSprite2D.play(skin + "_idle")
+			$AnimatedSprite2D.rotation = 0
+			S.resting = false
+		if not is_on_floor() : 
+			if not S.dash:
+				velocity += get_gravity() * delta * 0.7 * S.gravityred
+		direction = Input.get_axis("ui_left" , "ui_right")
+		if S.resting == false and S.swinging == false and is_on_floor():
+			velocity.x = direction * SPEED
+			if velocity.x > 0:
+				$AnimatedSprite2D.play(skin +"_run")
+				$AnimatedSprite2D.flip_h = false
+			elif velocity.x < 0:
+				$AnimatedSprite2D.play(skin +"_run")
+				$AnimatedSprite2D.flip_h = true
+			elif velocity.x == 0:
+				$AnimatedSprite2D.play(skin +"_idle")
+			
+		else:
+			velocity.x = move_toward(velocity.x , 0 , SPEED * delta)
+		if is_on_floor() and Input.is_action_just_pressed("spacebar"):
+			$AnimatedSprite2D.play(skin + "_fall")
+			velocity.y = JUMP_VELOCITY
+			velocity.x = direction * SPEED
+			S.jump = true
+		if not is_on_floor() and Input.is_action_just_pressed("dash") and S.oncooldown == false:
+			lastvelocityx = velocity.x
+			S.dash = true
+			rotation = 0.0
+			$AnimatedSprite2D.rotation = 0.0
+			S.swinging = false
+			S.flipp = false
+			$Timer.wait_time = 0.25 + S.dashinc
+			$Timer.start()
+			$Cooldown.start()
+			S.oncooldown = true
 	else:
-		velocity.x = move_toward(velocity.x , 0 , SPEED * delta)
-	if is_on_floor() and Input.is_action_just_pressed("spacebar"):
-		$AnimatedSprite2D.play(skin + "_fall")
-		velocity.y = JUMP_VELOCITY
-		velocity.x = direction * SPEED
-		S.jump = true
-	if not is_on_floor() and Input.is_action_just_pressed("dash") and S.oncooldown == false:
-		lastvelocityx = velocity.x
-		S.dash = true
-		rotation = 0.0
-		$AnimatedSprite2D.rotation = 0.0
-		S.swinging = false
-		S.flipp = false
-		$Timer.start()
-		$Cooldown.start()
-		S.oncooldown = true
+		velocity = Vector2(0,0)
+		$"../Control/CanvasLayer".visible = false
+		if !played_once:
+			$"../AnimationPlayer".play("gambling")
+			print("gambling done")
+			played_once = true
+		if S.justgamble:
+			$"../AnimationPlayer".play_backwards("gambling")
+			played_once = false
 	move_and_slide()
 
 
